@@ -1,57 +1,40 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import { auth, db } from "../shared/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
-
 import { useNavigate, Link } from "react-router-dom"
 
-const Signup = () => {
-  const id_ref = useRef(null);
-  const name_ref = useRef(null);
-  const pw_ref = useRef(null);
+const Signup = (() => {
+        const id_ref = useRef(null);
+        const name_ref = useRef(null);
+        const pw_ref = useRef(null);
+        const city_ref = useRef(null);
+      
+        const navigate = useNavigate();
 
-  const navigate = useNavigate();
-
-  const signupFB = async () => {
-
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        id_ref.current.value,
-        // name_ref.current.value,
-        pw_ref.current.value
-        );
-        console.log(user);
-  
-        const user_doc = await addDoc(collection(db, "users"), {
-          user_id: id_ref.current.value,
-          name : name_ref.current.value,
-          // pw : pw_ref.current.value,
-        });
-  
-        console.log(user_doc.id);
-
-        navigate("/")
-    };
-  
-  return (
-    <Container>
-      <Input ref={id_ref} placeholder="이메일을 입력해주세요" required />
-      <Input ref={name_ref} placeholder="이름을 입력해주세요" />
-      <Input ref={pw_ref} type="password" placeholder="비밀번호를 입력해주세요" />
-      <Input ref={pw_ref} type="password" placeholder="비밀번호를 확인해주세요" />
-      <Button onClick={signupFB}>Signup</Button>
-        <p>
-          회원이신가요? <Link to="/login">로그인</Link>
-        </p>
-    </Container>
-  )
-}
+    return (
+      <>
+        <Container>
+        <h2>회원가입</h2>
+          <Input ref={id_ref} placeholder="이메일" required />
+          {/* <button>중복확인</button> */}
+          <Input ref={name_ref} placeholder="닉네임" />
+          {/* <button>중복확인</button> */}
+          <Input ref={pw_ref} type="password" placeholder="비밀번호" />
+          <Input ref={pw_ref} type="password" placeholder="비밀번호 재입력" />
+          <Input ref={city_ref} type="password" placeholder="주소 (시 까지만 입력)" />
+          <Button onClick={"/"}>Signup</Button>
+            <p>
+              회원이신가요? <Link to="/login">로그인</Link>
+            </p>
+        </Container>
+        </>
+      )
+  }
+);
 
 const Container = styled.div`
   width: 400px;
-  height: 250px;
+  height: 440px;
   border: solid 1px #dadada;
   display: inline-block;
   margin-top: 100px;
@@ -81,7 +64,7 @@ const Button = styled.div`
   margin: 16px 0 7px;
   cursor: pointer;
   text-align: center;
-  color: slateblue;
+  color: white;
   border: none;
   border-radius: 8px;
   background-color: black;
