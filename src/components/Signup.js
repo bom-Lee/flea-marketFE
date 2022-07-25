@@ -10,18 +10,23 @@ const Signup = () => {
 
   // input value state 관리
   const [inputs, setInputs] = useState({
-    id: "",
-    password: "",
     email: "",
+    id: "",
+    adress: "",
+    pw: "",
+    pwcheck: "",
+    
   });
-  const { id, password, email } = inputs; // 구조분해할당
+  const { email, id, adress, pw, pwcheck  } = inputs; // 구조분해할당
 
   //유효한 id, password, email 조건 변수에 담아 사용
-  const vaildId = id.length >= 3 && id.length <= 10;
-  const vaildPassword = password.length >= 12 && password.length <= 20;
   const regexp = /^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.[0-9a-zA-Z]/; // email 형식 정규표현식
   const vaildEmail = email.match(regexp);
-
+  const vaildId = id.length >= 3 && id.length <= 10;
+  const vaildAdress = inputs.adress.length >= 2 && inputs.adress[inputs.adress.length -1] === "시"
+  const vaildPw = pw.length >= 8 && pw.length <= 20;
+  const vaildPwcheck = pwcheck.length >= 8 && pwcheck.length <= 20;
+  
   // onChange 함수로 state 값 바꿔주기
   const handleChange = (e) => {
     setInputs({
@@ -31,36 +36,71 @@ const Signup = () => {
   };
 
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
-  const handleClick = () => {
-    if (!vaildId) {
-      alert("유효하지 않은 nickname 입니다."); // 알람창
+  const handleClick = (e) => {  
+    
+    const passwordDoubleCheck = (pw, pwcheck) => {
+      if(pw !== pwcheck){
+        alert('비밀번호가 다릅니다.');
+      }else{
+        alert('비밀번호가 동일합니다');
+      }
+    }
+
+    passwordDoubleCheck(inutRef.current[3].value,inutRef.current[4].value)
+
+    if (!vaildEmail) {
+      e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
+      alert("유효하지 않은 email 입니다."); 
+      inutRef.current[0].focus(); // 자동 포커스
       setInputs({
         // 값 비워주기
         ...inputs,
-        id: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
+        email: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
       });
 
-      inutRef.current[0].focus(); // 자동 포커스
-    } else if (!vaildPassword) {
+    } else if (!vaildId) {
+      e.preventDefault(); 
+      alert("유효하지 않은 nickname 입니다."); 
+      setInputs({
+        ...inputs,
+        id: "", 
+      });
+      inutRef.current[1].focus(); 
+
+    } else if (!vaildAdress) {
+      e.preventDefault();
+      alert("유효하지 않은 주소 입니다.");
+      inutRef.current[2].focus();
+      setInputs({
+        ...inputs,
+        adress: "",
+      });
+
+    } else if (!vaildPw) {
+      e.preventDefault();
       alert("유효하지 않은 password 입니다.");
-      inutRef.current[1].focus();
+      inutRef.current[3].focus();
       setInputs({
         ...inputs,
         password: "",
       });
 
-    } else if (!vaildEmail) {
-      alert("유효하지 않은 email 입니다.");
-      inutRef.current[2].focus();
+    } else if (!vaildPwcheck) {
+      e.preventDefault();
+      alert("유효하지 않은 password 입니다.");
+      inutRef.current[4].focus();
       setInputs({
         ...inputs,
-        email: "",
+        password: "",
       });
 
+
     } else {
+      //api요청만들기
       return alert("회원가입 완료!");
     }
   };
+ 
 
   return (
     <>
@@ -72,7 +112,7 @@ const Signup = () => {
           placeholder="이메일"
           value={email}
           onChange={handleChange}
-          ref={(el) => (inutRef.current[2] = el)}
+          ref={(el) => (inutRef.current[0] = el)}
         />
 
         <Input
@@ -81,39 +121,40 @@ const Signup = () => {
           placeholder="닉네임"
           value={id}
           onChange={handleChange}
-          ref={(el) => (inutRef.current[0] = el)}
+          ref={(el) => (inutRef.current[1] = el)}
         />
         <Input
           type="text"
-          name="password"
+          name="adress"
           placeholder="주소 OO시"
-          value={password}
+          value={adress}
           onChange={handleChange}
-          ref={(el) => (inutRef.current[1] = el)}
+          ref={(el) => (inutRef.current[2] = el)}
         />
 
         <Input
           type="text"
-          name="password"
+          name="pw"
           placeholder="비밀번호"
-          value={password}
+          value={pw}
           onChange={handleChange}
-          ref={(el) => (inutRef.current[1] = el)}
+          ref={(el) => (inutRef.current[3] = el)}
         />
 
         <Input
           type="text"
-          name="password"
+          name="pwcheck"
           placeholder="비밀번호 확인"
-          value={password}
+          value={pwcheck}
           onChange={handleChange}
-          ref={(el) => (inutRef.current[1] = el)}
+          ref={(el) => (inutRef.current[4] = el)}
         />
 
         <Button
           type="button"
-          onClick={handleClick}
-          disabled={id.length < 1 && password.length < 1 && email.length < 1}
+          onClick=
+            {handleClick}
+          disabled={id.length < 1 && pw.length < 1 && email.length < 1}
         >
           회원가입
         </Button>

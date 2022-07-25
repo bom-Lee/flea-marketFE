@@ -8,19 +8,27 @@ import Main from "./components/Main";
 import Login from "./components/Login";
 import UserInfo from "./components/Userinfo";
 
-
 function App() {
+  const isLogin = false;
   return (
     <BrowserRouter>
       <Header />
-      <MainBox>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-          <Route path="userinfo" element={<UserInfo/>}/>
-        </Routes>
-      </MainBox>
+      {isLogin ? (
+        <MainBox>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="userinfo" element={<UserInfo />} />
+          </Routes>{" "}
+        </MainBox>
+      ) : (
+        <MainBox>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+          </Routes>
+        </MainBox>
+      )}
     </BrowserRouter>
   );
 }

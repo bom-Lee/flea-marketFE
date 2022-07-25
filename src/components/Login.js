@@ -7,30 +7,45 @@ import { useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
 
-  // const id_ref = React.useRef(null);
-  // const pw_ref = React.useRef(null);
+  // const [id, onChangeId, setId] = useInput("");
+  // const [pwd, onChangePwd, setPwd] = useInput("");
 
-  // const loginFB = async () => {
-  //   const user = await signInWithEmailAndPassword(
-  //     auth,
-  //     id_ref.current.value,
-  //     pw_ref.current.value
-  //   );
-  //     console.log(user);
+  // const onReset = useCallback(() => {
+  //   setId("");
+  //   setPwd("");
+  // }, [setId, setPwd]);
 
-  //     const user_docs = await getDocs(
-  //         query(collection(db, "users"), where("user_id", "==", user.user.email))
-  //     );
+  // const onLogin = () => {
+  //   if (!id || !pwd) {
+  //     alert("모든 값을 정확하게 입력해주세요");
+  //     return;
+  //   }
 
-  //   };
+  //   alert("로그인");
+  //   onReset();
+  // };
 
   return (
     <>
       <Container>
         <H2>로그인</H2>
-        <Input label="이메일" placeholder="이메일을 입력해주세요" />
-        <Input type="password" label="비밀번호" placeholder="비밀번호를 입력해주세요" />
-        <Input type="password" label="비밀번호" placeholder="비밀번호를 입력해주세요" />
+            <Input
+              id="user_id"
+              // value={id}
+              // onChange={onChangeId}
+              label="이메일"
+              placeholder="이메일을 입력해주세요"
+              required
+            />
+            <Input
+              type="password"
+              label="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
+              id="user_pwd"
+              // value={pwd}
+              // onChange={onChangePwd}
+              required
+            />
         <Button onClick={() => navigate("/")}>로그인</Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
