@@ -1,48 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-// import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
-  //   const id_ref = useRef(null);
-  //   const name_ref = useRef(null);
-  //   const pw_ref = useRef(null);
-
   const navigate = useNavigate();
-
-  //   const signupFB = async () => {
-
-  //       const user = await createUserWithEmailAndPassword(
-  //         auth,
-  //         id_ref.current.value,
-  //         // name_ref.current.value,
-  //         pw_ref.current.value
-  //         );
-  //         console.log(user);
-
-  //         const user_doc = await addDoc(collection(db, "users"), {
-  //           user_id: id_ref.current.value,
-  //           name : name_ref.current.value,
-  //           // pw : pw_ref.current.value,
-  //         });
-
-  //         console.log(user_doc.id);
-
-  // navigate("/")
-  // };
 
   return (
     <Container>
-      <H2>회원가입</H2>
-      <Input placeholder="이메일을 입력해주세요" required />
-      <Input placeholder="닉네임을 입력해주세요" />
-      <Input placeholder="주소 시까지 입력해주세요" />
-      <Input type="password" placeholder="비밀번호를 입력해주세요" />
-      <Input type="password" placeholder="비밀번호를 확인해주세요" />
+      <H2>회원정보</H2>
+      <Input label="이메일" placeholder="이메일" />
+      <Input label="닉네임" placeholder="닉네임" />
+      <Input label="주소" placeholder="__시" />
+      <Input label="비밀번호" type="password" placeholder="비밀번호" />
+      <Input label="비밀번호 확인" type="password" placeholder="비밀번호 확인" />
       <Button onClick={() => navigate("/")}>가입하기</Button>
       <P>
-        회원이신가요? <Link to="/login">로그인</Link>
+        회원이신가요?<Link to="/login">로그인</Link>
       </P>
     </Container>
   );
@@ -72,6 +45,7 @@ const P = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  
 `;
 
 const Input = styled.input`
@@ -80,7 +54,7 @@ const Input = styled.input`
   width: 100%;
   height: 40px;
   margin: 0 0 8px;
-  padding: 5px 39px 5px 11px;
+  padding: 5px 39px 5px 15px;
   border: solid 1px #dadada;
   border-radius: 8px;
   background: #fff;

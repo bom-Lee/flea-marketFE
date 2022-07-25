@@ -28,9 +28,9 @@ const Login = () => {
     <>
       <Container>
         <H2>로그인</H2>
-        <Input placeholder="이메일을 입력해주세요" />
-        <Input type="password" placeholder="비밀번호를 입력해주세요" />
-        <Input type="password" placeholder="비밀번호를 입력해주세요" />
+        <Input label="이메일" placeholder="이메일을 입력해주세요" />
+        <Input type="password" label="비밀번호" placeholder="비밀번호를 입력해주세요" />
+        <Input type="password" label="비밀번호" placeholder="비밀번호를 입력해주세요" />
         <Button onClick={() => navigate("/")}>로그인</Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>

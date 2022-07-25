@@ -15,7 +15,7 @@ function Header(pops) {
       <Nav>
         <btn
           onClick={() => navigate("/")}
-          style={{ color: "white", fontSize: "24px" }}
+          style={{ color: "white", fontSize: "24px", cursor: "pointer" }}
         >
           FleaMarket
         </btn>

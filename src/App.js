@@ -6,6 +6,8 @@ import Signup from "./components/Signup";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/Login";
+import UserInfo from "./components/Userinfo";
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          <Route path="userinfo" element={<UserInfo/>}/>
         </Routes>
       </MainBox>
     </BrowserRouter>
