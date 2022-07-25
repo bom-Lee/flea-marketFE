@@ -1,10 +1,52 @@
-import React from "react";
+import React, {useState}from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { actionCreators as userActions } from "../redux/modules/user";
+import { idCheck, usernameCheck } from "../shared/common";
 
 const Signup = () => {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [pwd_check, setPwdCheck] = useState("");
+  const [gender, setGender] = useState("");
+
+  const signup = () => {
+    if (
+      userId === "" ||
+      password === "" ||
+      username === "" ||
+      pwd_check === "" ||
+      gender === ""
+    ) {
+      window.alert("모두 입력해주세요!");
+      return;
+    }
+
+    if (!idCheck(userId)) {
+      window.alert("아이디 형식이 맞지 않습니다!");
+      return;
+    }
+
+    if (!usernameCheck(username)) {
+      window.alert("닉네임에는 기호가 없어야 합니다!");
+      return;
+    }
+
+    if (password !== pwd_check) {
+      window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
+      return;
+    }
+
+    dispatch(userActions.signUpDB(userId, password, username, gender));
+  };
+  
   return (
     <Container>
       <H2>회원정보</H2>
