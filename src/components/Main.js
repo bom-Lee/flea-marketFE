@@ -59,7 +59,6 @@ const ItemList = styled.div`
 const H2 = styled.h2`
     font-size: 1.5rem;
     margin-bottom: 25px;
-
 `
 const Section = styled.section`
     min-width: 512px;

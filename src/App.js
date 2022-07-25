@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Main from "./components/Main";
+import ItemUp from "./components/ItemUp";
+// import Userinfo from "./components/Userinfo";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -18,6 +20,8 @@ function App() {
       <Routes>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+
+      <Route path="/itemup" element={<ItemUp />} />
       <Route path="/" element={<Main />} />
       </Routes>
     </div>

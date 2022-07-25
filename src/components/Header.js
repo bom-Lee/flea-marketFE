@@ -54,7 +54,7 @@ const Nav = styled.div`
 `;
 
 const Logo = styled.div`
-        margin-left : 20px;
+        margin-left : 10px;
         width: 130px;
         padding: 20px;
         // background-color: red;
@@ -64,7 +64,7 @@ const Text = styled.div`
         display: inline-block;
         position: absolute;
         top: 25px;
-        margin-right : 20px;
+        margin-right : 30px;
         text-align: right;
         right: 200px;
         width: 300px;
@@ -86,6 +86,7 @@ const Text = styled.div`
 const Btngruop = styled.div`
         display: inline-block;
         position: absolute;
+        margin-right : 10px;
         top: 20px;
         right: 16px;
         width: 180px;
