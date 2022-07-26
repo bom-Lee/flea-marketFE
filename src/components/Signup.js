@@ -10,21 +10,21 @@ const Signup = () => {
 
   // input value state 관리
   const [inputs, setInputs] = useState({
-    email: "",
-    id: "",
-    adress: "",
+    username: "",
+    nickname: "",
+    city: "",
     pw: "",
     pwcheck: "",
   });
-  const { email, id, adress, pw, pwcheck } = inputs; // 구조분해할당
+  const { username, nickname, city, pw, pwcheck } = inputs; // 구조분해할당
 
   //유효한 id, password, email 조건 변수에 담아 사용
   const regexp = /^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.[0-9a-zA-Z]/; // email 형식 정규표현식
-  const vaildEmail = email.match(regexp);
-  const vaildId = id.length >= 3 && id.length <= 10;
+  const vaildEmail = username.match(regexp);
+  const vaildId = nickname.length >= 3 && nickname.length <= 10;
   const vaildAdress =
-    inputs.adress.length >= 2 &&
-    inputs.adress[inputs.adress.length - 1] === "시";
+    inputs.city.length >= 2 &&
+    inputs.city[inputs.city.length - 1] === "시";
   const vaildPw = pw.length >= 8 && pw.length <= 20;
   const vaildPwcheck = pwcheck.length >= 8 && pwcheck.length <= 20;
 
@@ -55,14 +55,14 @@ const Signup = () => {
       setInputs({
         // 값 비워주기
         ...inputs,
-        email: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
+        username: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
       });
     } else if (!vaildId) {
       e.preventDefault();
       alert("유효하지 않은 nickname 입니다.");
       setInputs({
         ...inputs,
-        id: "",
+        nickname: "",
       });
       inutRef.current[1].focus();
     } else if (!vaildAdress) {
@@ -71,7 +71,7 @@ const Signup = () => {
       inutRef.current[2].focus();
       setInputs({
         ...inputs,
-        adress: "",
+        city: "",
       });
     } else if (!vaildPw) {
       e.preventDefault();
@@ -79,7 +79,7 @@ const Signup = () => {
       inutRef.current[3].focus();
       setInputs({
         ...inputs,
-        password: "",
+        pw: "",
       });
     } else if (!vaildPwcheck) {
       e.preventDefault();
@@ -87,7 +87,7 @@ const Signup = () => {
       inutRef.current[4].focus();
       setInputs({
         ...inputs,
-        password: "",
+        pwcheck: "",
       });
     } else {
       //api요청만들기
@@ -101,26 +101,26 @@ const Signup = () => {
         <H2>회원가입</H2>
         <Input
           type="text"
-          name="email"
+          name="username"
           placeholder="이메일"
-          value={email}
+          value={username}
           onChange={handleChange}
           ref={(el) => (inutRef.current[0] = el)}
         />
 
         <Input
           type="text"
-          name="id"
+          name="nickname"
           placeholder="닉네임"
-          value={id}
+          value={nickname}
           onChange={handleChange}
           ref={(el) => (inutRef.current[1] = el)}
         />
         <Input
           type="text"
-          name="adress"
+          name="city"
           placeholder="주소 OO시"
-          value={adress}
+          value={city}
           onChange={handleChange}
           ref={(el) => (inutRef.current[2] = el)}
         />
@@ -142,14 +142,15 @@ const Signup = () => {
           onChange={handleChange}
           ref={(el) => (inutRef.current[4] = el)}
         />
-
-        <Button
-          type="button"
-          onClick={handleClick}
-          disabled={id.length < 1 && pw.length < 1 && email.length < 1}
-        >
-          회원가입
-        </Button>
+        <Link to={`/${username}`}>
+          <Button
+            type="button"
+            onClick={handleClick}
+            disabled={username.length < 1 && pw.length < 1 && username.length < 1}
+          >
+            회원가입
+          </Button>
+        </Link>
         <P>
           회원이신가요? <Link to="/login">로그인</Link>
         </P>
@@ -162,7 +163,9 @@ const Container = styled.div`
   width: 400px;
   height: 360px;
   border: solid 1px #dadada;
-  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: 100px;
   padding: 30px;
 `;
@@ -190,7 +193,7 @@ const Input = styled.input`
   width: 100%;
   height: 40px;
   margin: 0 0 8px;
-  padding: 5px 39px 5px 15px;
+  padding: 5px 39px 5px 10px;
   border: solid 1px #dadada;
   border-radius: 8px;
   background: #fff;

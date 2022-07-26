@@ -1,11 +1,43 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
+import {vaildEmail, vaildPw} from "./Signup"
+
+  import { formatMs } from "@material-ui/core";
 
 // import { Link } from "react-router-dom"
 
-const Login = () => {
-  const navigate = useNavigate();
+
+  const Login = () => {
+
+ const navigate = useNavigate();
+
+
+
+  const handleClick = async () => {
+    if (!id || !pw) {
+      alert("모든 값을 정확하게 입력해주세요");
+      //
+    } else if (username !==username) {
+      window.alert('이메일')
+      //
+    } else if (pw !==pw) {
+      //
+    } else { 
+    
+      // api
+      const { data } = await axios.post("/signup", {
+        id: inputRef.current[0].value,
+        pw: inputRef.current[3].value,
+      });
+      // console.log(date); ///{status: 200, date:{msg: 'success'}}
+      if (data.data.msg === "success") {
+        window.alert("회원가입완료");
+        navigate("/login");
+      } else {window.alert("아이디가 틀립니다.");}
+    }
+  };
+  
 
   // const [id, onChangeId, setId] = useInput("");
   // const [pwd, onChangePwd, setPwd] = useInput("");
@@ -16,7 +48,7 @@ const Login = () => {
   // }, [setId, setPwd]);
 
   // const onLogin = () => {
-  //   if (!id || !pwd) {
+  //   if (!id || !pw) {
   //     alert("모든 값을 정확하게 입력해주세요");
   //     return;
   //   }
@@ -29,23 +61,23 @@ const Login = () => {
     <>
       <Container>
         <H2>로그인</H2>
-            <Input
-              id="user_id"
-              // value={id}
-              // onChange={onChangeId}
-              label="이메일"
-              placeholder="이메일을 입력해주세요"
-              required
-            />
-            <Input
-              type="password"
-              label="비밀번호"
-              placeholder="비밀번호를 입력해주세요"
-              id="user_pwd"
-              // value={pwd}
-              // onChange={onChangePwd}
-              required
-            />
+        <Input
+          id="username"
+          // value={username}
+          // onChange={handleChange}
+          label="이메일"
+          placeholder="이메일을 입력해주세요"
+          required
+        />
+        <Input
+          type="password"
+          label="비밀번호"
+          placeholder="비밀번호를 입력해주세요"
+          id="pw"
+          // value={pw}
+          // onChange={handleChange}
+          required
+        />
         <Button onClick={() => navigate("/")}>로그인</Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
@@ -59,9 +91,11 @@ const Container = styled.div`
   width: 400px;
   height: 220px;
   border: solid 1px #dadada;
-  display: inline-block;
   margin-top: 100px;
   padding: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const H2 = styled.div`
