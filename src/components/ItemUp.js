@@ -2,96 +2,166 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Button } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
+
+import { useParams,useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 
 const ItemUp = () => {
-    // const item_name_ref = React.useRef(null);
-    // const image_ref = React.useRef(null);
-    // const item_price_ref = React.useRef(null);
-    // const item_detail_ref = React.useRef(null);
+    const params = useParams();
+  console.log(params.nickname)
 
+    const item_detail = useSelector((state) => state.item.item)
+    console.log(item_detail)
 
-    const navigate = useNavigate();
-    // // const dispatch = useDispatch();
-    // // const is_login = useSelector(state => state.user.is_login);
+    const include = item_detail.find((item) => {
+        if(item.nickname === params.nickname) return item
+    })
+    console.log(include);
 
-    const goToHome=()=>{
-        navigate('/');
-        }
+    const navigate = useNavigate()
 
+    // const [selected, setSelected] = React.useState("");
+    // const handleSelect = (e) => {
+    //   setSelected(e.target.value);
+    // };
+    // // console.log(selected);
 
-    // useEffect(()=>{
-    //     if(!is_login){
-    //         return history.replace("/login");
-    //     }
-    // },[])
-
+    const title_ref = React.useRef(null);
+    const image_ref = React.useRef(null);
+    const price_ref = React.useRef(null);
+    const detail_ref = React.useRef(null);
 
 
     return (
-        <>
-        <h2>상품등록</h2>
+        <ContainerBox>
+        <H2>상품등록</H2>
 
         <Container>
-            <Userinfo>
-                <span>닉네임</span>
-                <span>주소</span>
-            </Userinfo>
+            {/* <Userinfo>
+                <UserNickName>닉네임</UserNickName>
+                <Address>주소</Address>
+            </Userinfo> */}
 
-            <div>
-                <div>
-                상품명
-                <input type='text' placeholder="상품 제목을 입력해주세요." />
-                </div>
+            <Subject>
+                <span>상품명</span>
+                <Input ref={title_ref} type='text'
+                rules={[{ required: true, massage: '제목을 입력하세요!'}]}
+                placeholder="상품 제목을 입력해주세요" />
                 <br />
 
-                <span>사진</span>
-                <input type="file" />
+                <span style={{margin: "10px 10px 10px 0px"}}>사진</span>
+                <input ref={image_ref} type="file" placeholder="사진을 선택해주세요" />
                 <br />
-
+                
                 <span>가격</span>
-                <input type="number" placeholder="숫자만 입력해주세요" />
+                <Input ref={price_ref} style={{width: "200px"}} placeholder="숫자만 입력해주세요" />
                 <br />
 
-                <div>
-                <textarea style={{width: '85%', height: '300px'}}
-                placeholder="상품 설명을 입력해주세요"
-                // value={textValue}
-                // onChange={(e) => handleSetValue(e)}
-                ></textarea>
-            
-                </div>
-            </div>
-        </Container>
-        <Button onClick={goToHome} style={{color: 'black', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
+                <p>상품소개</p>
+                <textarea ref={detail_ref} style={{width: "450px", height: "300px"}}
+                rules={[{ required: true, massage: '내용을 입력하세요!'}]}
+                placeholder="상품 설명을 입력해주세요" />
+            </Subject>
+        <Button type="submit" onClick={() => {
+            window.alert("작성완료!")
+            navigate("/")
+             }} style={{color: 'black', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
                 작성하기</Button>
-        </>
+        </Container>
+        </ContainerBox>
     )
 }
 
+const ContainerBox = styled.div`
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+`;
+
+const H2 = styled.h2`
+    font-size: 1.5rem;
+    margin: 10px;
+    // margin-bottom: 25px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+`;
+
 const Container = styled.div`
     width: 500px;
-    height: 600px;
+    height: 650px;
     border: solid 1px #dadada;
-    display: inline-block;
+    border-radius: 8px;
+    // display: inline-block;
+    // align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
     margin-top: 100px;
     padding: 20px 20px 20px 20px;
     margin: 10px 10px 10px 10px;
-    text-align: center;
+    
 `;
 
 const Userinfo = styled.div`
     text-align: left;
-    margin-left: 25px;
-    padding: 10px 10px 30px 10px;
+    margin-left: 16px;
+    padding: 10px 10px 5px 10px;
 `;
 
-const TextArea =styled.div`
-    width: 450px;
-    height: 300px;
+const UserNickName = styled.div`
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+`;
+
+const Address = styled.div`
+    font-size: 14px;
+    color: rgb(136, 136, 136);
+`;
+
+
+const Subject = styled.div`
+    text-align: left;
+    padding: 20px;
+    font-size: 14px;
+    color: rgb(136, 136, 136);
+    
+`;
+
+const Input = styled.input`
+    position: relative;
+    overflow: hidden;
+    width: 85%;
+    height: 40px;
+    margin: 10px 10px 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px 0px 5px 10px;
     border: solid 1px #dadada;
     border-radius: 8px;
+    background: #fff;
+    box-sizing: border-box;
 `;
+
+// const Image = styled.div`
+
+// `;
+
+// const TextArea =styled.div`
+//     width: 450px;
+//     height: 300px;
+//     display: inline-block;
+
+//     // text-align: center;
+//     border: solid 1px #dadada;
+//     border-radius: 8px;
+// `;
 
 // const content_txt = styled.div`
 //     width: 90%;

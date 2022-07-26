@@ -5,35 +5,43 @@ import { Button } from '@material-ui/core';
 // import { Stack } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
+import { useSelector, useDispatch } from "react-redux";
+
+
+
 const Header =(() => {
     const navigate = useNavigate();
-
-    // const Header = () => {
-
-      const goToHome=()=>{
-        navigate('/');
-        }
-      
-      const goToLogin=()=>{
-        navigate('/login');
-      }
-  
-        const goToSignup=()=>{
-        navigate('/signup');
-      }
 
     return (
         <div className="App">
           <Nav>
-            <Logo onClick={goToHome} style={{color: 'white', fontSize: '24px'}}>FleaMarket</Logo>
+            <Logo onClick={() => {
+              navigate("/")
+            }} style={{color: 'white', fontSize: '24px'}}>FleaMarket</Logo>
 
             <Text>봄봄</Text>
 
+            {/* 로그인 후 상태 */}
             <Btngruop>
-              <Button onClick={goToLogin} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
+            <Button onClick={() => {
+                navigate('/itemUp')
+                }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
+                상품등록</Button>
+              <Button onClick={() => {
+                window.alert("로그아웃!")
+                navigate("/login")
+              }} style={{color: 'white'}} variant="outlined" color="inherit">
+                로그아웃</Button>
+
+              {/* 로그인 전 상태 */}
+              {/* <Button onClick={() => {
+                navigate('/login')
+                }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
                 Login</Button>
-              <Button onClick={goToSignup} style={{color: 'white'}} variant="outlined" color="inherit">
-                회원가입</Button>
+              <Button onClick={() => {
+                navigate('/signup')
+              }} style={{color: 'white'}} variant="outlined" color="inherit">
+                회원가입</Button> */}
             </Btngruop>
 
           </Nav>
@@ -64,7 +72,7 @@ const Text = styled.div`
         display: inline-block;
         position: absolute;
         top: 25px;
-        margin-right : 30px;
+        margin-right : 40px;
         text-align: right;
         right: 200px;
         width: 300px;
@@ -89,7 +97,7 @@ const Btngruop = styled.div`
         margin-right : 10px;
         top: 20px;
         right: 16px;
-        width: 180px;
+        width: 200px;
         color: slateblue;
         // background-color: green;
 `;
