@@ -35,7 +35,32 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+//
+  // const handleClick = async () => {
+  //   if (!id || !pw) {
+  //     alert("모든 값을 정확하게 입력해주세요");
+  //     //
+  //   } else if (username !== username) {
+  //     alert("이메일체크");
+  //     //
+  //   } else if (pw !== pw) {
+  //     alert("이메일체크");
+  //     //
+  //   } else {
+  //     // api
+  //     const { data } = await axios.post("/signup", {
+  //       id: inputRef.current[0].value,
+  //       pw: inputRef.current[3].value,
+  //     });
+  //     // console.log(date); ///{status: 200, date:{msg: 'success'}}
+  //     if (data.data.msg === "success") {
+  //       alert("회원가입완료");
+  //       navigate("/login");
+  //     } else {
+  //       alert("입력이 올바르지 않아요!");
+  //     }
+  //   }
+  // };
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
     const passwordDoubleCheck = (pw, pwcheck) => {

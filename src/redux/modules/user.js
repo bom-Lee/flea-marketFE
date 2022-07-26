@@ -35,10 +35,17 @@ const initialState = {
             nickname: "봄봄",
             pw: "bombom123",
             city: "대구시"
+        },
+        {
+          username: "ondoo@gmail.com",
+            nickname: "온두",
+            pw: "ondoo123",
+            city: "고양시"
+
         }
     ]
 }
-  
+
 // //로그인api
 // const loginAPI = (username,pwd) => {
 //     return function (dispatch, getState, { history }) {

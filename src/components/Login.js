@@ -1,51 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import {vaildEmail, vaildPw} from "./Signup"
+import { vaildEmail, vaildPw } from "./Signup";
 
-  import { formatMs } from "@material-ui/core";
+import { formatMs } from "@material-ui/core";
 
 // import { Link } from "react-router-dom"
 
+const Login = () => {
+  const navigate = useNavigate();
 
-  const Login = () => {
-
- const navigate = useNavigate();
-
-
-
-  // const handleClick = async () => {
-  //   if (!id || !pw) {
-  //     alert("모든 값을 정확하게 입력해주세요");
-  //     //
-  //   } else if (username !==username) {
-  //     window.alert('이메일')
-  //     //
-  //   } else if (pw !==pw) {
-  //     //
-  //   } else { 
-    
-  //     // api
-  //     const { data } = await axios.post("/signup", {
-  //       id: inputRef.current[0].value,
-  //       pw: inputRef.current[3].value,
-  //     });
-  //     // console.log(date); ///{status: 200, date:{msg: 'success'}}
-  //     if (data.data.msg === "success") {
-  //       window.alert("회원가입완료");
-  //       navigate("/login");
-  //     } else {window.alert("아이디가 틀립니다.");}
-  //   }
-  // };
-  
-
-  // const [id, onChangeId, setId] = useInput("");
-  // const [pwd, onChangePwd, setPwd] = useInput("");
+  // const [username, onChangeUsername, setUsername] = useInput("");
+  // const [pw, onChangePw, setPw] = useInput("");
 
   // const onReset = useCallback(() => {
-  //   setId("");
-  //   setPwd("");
-  // }, [setId, setPwd]);
+  //   setUsername("");
+  //   setPw("");
+  // }, [setUsername, setPw]);
 
   // const onLogin = () => {
   //   if (!id || !pw) {
