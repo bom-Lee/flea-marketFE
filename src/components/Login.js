@@ -138,7 +138,7 @@ const Button = styled.div`
   margin: 16px 0 7px;
   cursor: pointer;
   text-align: center;
-  color: slateblue;
+  color: white;
   border: none;
   border-radius: 8px;
   background-color: black;

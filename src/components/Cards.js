@@ -1,13 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+
+// import { history } from '../redux/configStore'
+
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
-const Cards = ({ data }) => {
+const Cards = () => {
   const navigate = useNavigate()
-  console.log(data)
 
-  return (  
+  const item = useSelector((state) => state.item.items)
+    console.log(item)
+
+
+// const Cards = (props) => {
+//   const navigate = useNavigate()
+//   const { nickname, images, title, price, city } = props.data;
+
+  return (
     <>
     {/* <Item onClick={() => {
       navigate('/boards/' + data.nickname + '/items')
@@ -15,19 +26,16 @@ const Cards = ({ data }) => {
     
           <Card>
                 <CardInner>
+                {/* onClick={()=>navigate.push(`/item/${idx}`)} */}
                     <CardHead>
-                    {/* src={data.images} */}
-                    <img src={"https://images.unsplash.com/photo-1515165737480-16f5a6cff26d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1156&q=80"} alt="product" />
+                    <img src={item[0].images} alt="" />
                     <Sth />
                     </CardHead>
                     <CardContents>
-                    {/* {data.title} */}
-                    <ItemName>개발자 머그컵</ItemName>
+                    <ItemName>{item[0].itemName}</ItemName>
                     <ItemContentBottom>
-                       {/* {data.price} */}
-                        <Price>5000</Price>
-                        {/* {data.city} */}
-                        <City>대구시</City>
+                        <Price>{item[0].itemPrice}</Price>
+                        <City>{item[0].city}</City>
                         {/* <Time>2시간 전</Time> */}
                     </ItemContentBottom>
                     </CardContents>
@@ -69,7 +77,6 @@ const Card = styled.div`
   // margin-bottom: 10px;
   // background-color: blue;
   padding : 0px 20px 0px 20px;
-
   
   &:nth-child(5n) {
     margin-right: 0;
