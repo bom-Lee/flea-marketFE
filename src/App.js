@@ -8,7 +8,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Main from "./components/Main";
 import ItemUp from "./components/ItemUp";
-// import UserInfo from "./components/Userinfo";
+import UserInfo from "./components/Userinfo";
 
 function App() {
   
@@ -20,6 +20,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="/itemup" element={<ItemUp />} />
+          <Route path="/userinfo" element={<UserInfo />} />
         </Routes>
     </>
   );
