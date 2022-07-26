@@ -20,13 +20,13 @@ const Signup = () => {
 
   //유효한 id, password, email 조건 변수에 담아 사용
   const regexp = /^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.[0-9a-zA-Z]/; // email 형식 정규표현식
-  const vaildEmail = username.match(regexp);
-  const vaildId = nickname.length >= 3 && nickname.length <= 10;
-  const vaildAdress =
+  const vaildUsername = username.match(regexp);
+  const vaildNickname = nickname.length >= 2 && nickname.length <= 10;
+  const vaildCity =
     inputs.city.length >= 2 &&
     inputs.city[inputs.city.length - 1] === "시";
-  const vaildPw = pw.length >= 8 && pw.length <= 20;
-  const vaildPwcheck = pwcheck.length >= 8 && pwcheck.length <= 20;
+  const vaildPw = pw.length >= 6 && pw.length <= 12;
+  const vaildPwcheck = pwcheck.length >= 6 && pwcheck.length <= 12;
 
   // onChange 함수로 state 값 바꿔주기
   const handleChange = (e) => {
@@ -41,14 +41,21 @@ const Signup = () => {
     const passwordDoubleCheck = (pw, pwcheck) => {
       if (pw !== pwcheck) {
         alert("비밀번호가 다릅니다.");
-      } else {
-        alert("비밀번호가 동일합니다");
-      }
+      } 
     };
 
     passwordDoubleCheck(inutRef.current[3].value, inutRef.current[4].value);
 
-    if (!vaildEmail) {
+    if (!username || !nickname || !city || !pw || !pwcheck) {
+      e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
+      alert("모든 값을 정확하게 입력해주세요!");
+      inutRef.current[0].focus(); // 자동 포커스
+      setInputs({
+        // 값 비워주기
+        ...inputs,
+        username: "", nickname: "",city: "",pw: "",pwcheck: "",// 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
+      });
+    }else if (!vaildUsername) {
       e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
       alert("유효하지 않은 email 입니다.");
       inutRef.current[0].focus(); // 자동 포커스
@@ -57,7 +64,7 @@ const Signup = () => {
         ...inputs,
         username: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
       });
-    } else if (!vaildId) {
+    } else if (!vaildNickname) {
       e.preventDefault();
       alert("유효하지 않은 nickname 입니다.");
       setInputs({
@@ -65,7 +72,7 @@ const Signup = () => {
         nickname: "",
       });
       inutRef.current[1].focus();
-    } else if (!vaildAdress) {
+    } else if (!vaildCity) {
       e.preventDefault();
       alert("유효하지 않은 주소 입니다.");
       inutRef.current[2].focus();

@@ -14,29 +14,29 @@ import {vaildEmail, vaildPw} from "./Signup"
 
 
 
-  const handleClick = async () => {
-    if (!id || !pw) {
-      alert("모든 값을 정확하게 입력해주세요");
-      //
-    } else if (username !==username) {
-      window.alert('이메일')
-      //
-    } else if (pw !==pw) {
-      //
-    } else { 
+  // const handleClick = async () => {
+  //   if (!id || !pw) {
+  //     alert("모든 값을 정확하게 입력해주세요");
+  //     //
+  //   } else if (username !==username) {
+  //     window.alert('이메일')
+  //     //
+  //   } else if (pw !==pw) {
+  //     //
+  //   } else { 
     
-      // api
-      const { data } = await axios.post("/signup", {
-        id: inputRef.current[0].value,
-        pw: inputRef.current[3].value,
-      });
-      // console.log(date); ///{status: 200, date:{msg: 'success'}}
-      if (data.data.msg === "success") {
-        window.alert("회원가입완료");
-        navigate("/login");
-      } else {window.alert("아이디가 틀립니다.");}
-    }
-  };
+  //     // api
+  //     const { data } = await axios.post("/signup", {
+  //       id: inputRef.current[0].value,
+  //       pw: inputRef.current[3].value,
+  //     });
+  //     // console.log(date); ///{status: 200, date:{msg: 'success'}}
+  //     if (data.data.msg === "success") {
+  //       window.alert("회원가입완료");
+  //       navigate("/login");
+  //     } else {window.alert("아이디가 틀립니다.");}
+  //   }
+  // };
   
 
   // const [id, onChangeId, setId] = useInput("");
