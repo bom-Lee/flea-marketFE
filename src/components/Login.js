@@ -57,7 +57,7 @@ const Login = () => {
 
 const Container = styled.div`
   width: 400px;
-  height: 270px;
+  height: 220px;
   border: solid 1px #dadada;
   display: inline-block;
   margin-top: 100px;
@@ -78,7 +78,7 @@ const P = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 40px;
 `;
 
 const Input = styled.input`
