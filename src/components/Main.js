@@ -3,17 +3,20 @@ import styled from 'styled-components';
 // import { Button } from '@material-ui/core';
 
 // import item from './elements/item'
-import Cards from './Cards'
-
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import Cards from './Cards';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const Main = () => {
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
 
-    const data = useSelector((state) => state.users)
-    console.log(data)
+    const user = useSelector((state) => state.user)
+    console.log(user)
+
+    const item = useSelector((state) => state.item)
+    console.log(item)
+
+
 
     // React.useEffect(() => {
      
@@ -34,10 +37,7 @@ const Main = () => {
             <H2>오늘의 상품 추천</H2>
             <ItemInfos>
                 <ItemContainer>
-                    {/* {products.map((info, idx) =><Cards data = {info} key={idx} />)} */}
-                    <Cards />
-                    <Cards />
-                    <Cards />
+                    {/* {item.map((item, idx) => <Cards item = {item} key={idx} />)} */}
                     <Cards />
                 </ItemContainer>
             </ItemInfos>

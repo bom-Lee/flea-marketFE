@@ -2,31 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 // import axios from "axios";
 import { Button } from '@material-ui/core';
-// import { Stack } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
 
+import user from '../redux/modules/user'
+
+// import { Stack } from '@material-ui/core';
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 
+// const Header = ({ data }) => {
+//   const navigate = useNavigate()
+//   console.log(data)
 
+const Header = () => {
+  const user = useSelector((state) => state.user.users)
+  console.log(user);
 
-const Header =(() => {
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
     return (
         <div className="App">
           <Nav>
             <Logo onClick={() => {
               navigate("/")
-            }} style={{color: 'white', fontSize: '24px'}}>FleaMarket</Logo>
+            }} style={{color: 'white', fontSize: '24px', cursor: "pointer"}}>FleaMarket</Logo>
 
-            <Text>봄봄</Text>
+            <Text>{user[1].nickname}</Text>
 
             {/* 로그인 후 상태 */}
             <Btngruop>
             <Button onClick={() => {
                 navigate('/itemUp')
                 }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
-                상품등록</Button>
+                작성하기
+                </Button>
               <Button onClick={() => {
                 window.alert("로그아웃!")
                 navigate("/login")
@@ -48,7 +57,6 @@ const Header =(() => {
         </div>
       );
     }
-);
 
 const Nav = styled.div`
         background: black;

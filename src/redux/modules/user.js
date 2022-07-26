@@ -35,6 +35,13 @@ const initialState = {
             nickname: "봄봄",
             pw: "bombom123",
             city: "대구시"
+        },
+        {
+          username: "ondoo@gmail.com",
+            nickname: "온두",
+            pw: "ondoo123",
+            city: "고양시"
+
         }
     ]
 }

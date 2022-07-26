@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Main from "./components/Main";
 import ItemUp from "./components/ItemUp";
 import UserInfo from "./components/Userinfo";
+import Item from "./components/Item";
 
 function App() {
   
@@ -21,6 +22,8 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="/itemup" element={<ItemUp />} />
           <Route path="/userinfo" element={<UserInfo />} />
+          <Route path="/Item" element={<Item />} />
+
         </Routes>
     </>
   );
