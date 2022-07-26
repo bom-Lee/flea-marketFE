@@ -1,11 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-
-import { Button } from "@material-ui/core";
-
-
+import React from 'react';
+import styled from 'styled-components';
+// import axios from "axios";
+import { Button } from '@material-ui/core';
 // import { Stack } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+
 
 function Header(pops) {
   // const Header = () => {
@@ -34,34 +33,66 @@ function Header(pops) {
             style={{ color: "white" }}
             variant="outlined"
             color="white"
-          >
-            회원가입
-          </Button>
+          >회원가입</Button>
         </Btngruop>
+
       </Nav>
     </div>
   );
-}
+};
 
 const Nav = styled.div`
-  background: black;
-  width: 100%;
-  display: Flex;
-  color: white;
-  padding: 20px;
-  font-weight: 300;
-  font-size: 20px;
-  font-weight: bold;
+        background: black;
+        width: 100%;
+        display: Flex;
+        color: white;
+        padding: 20px;
+        font-weight: 300;
+        font-size: 20px;
+        font-weight: bold;
+        justify-content: center;
+
+`;
+
+const Logo = styled.div`
+        margin-left : 10px;
+        width: 130px;
+        padding: 20px;
+        // background-color: red;
+`
+
+const Text = styled.div`
+        display: inline-block;
+        position: absolute;
+        top: 25px;
+        margin-right : 40px;
+        text-align: right;
+        right: 200px;
+        width: 300px;
+        color: white;
+        // background-color: orange;
+        font-size: 18px;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        &::after{
+          content: "님, 환영합니다! :)";
+          font-size: 16px;
+          margin-left: 5px;
+        }
+
 `;
 
 const Btngruop = styled.div`
-  display: inline-block;
-  position: absolute;
-  top: 20px;
-  right: 16px;
-  width: 180px;
-  color: slateblue;
-  // background-color: ornge;
+        display: inline-block;
+        position: absolute;
+        margin-right : 10px;
+        top: 20px;
+        right: 16px;
+        width: 200px;
+        color: slateblue;
+        // background-color: green;
 `;
 
 export default Header;
