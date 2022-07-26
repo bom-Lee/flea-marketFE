@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 
 const ItemUp = () => {
     const params = useParams();
-  console.log(params.nickname)
+    console.log(params.nickname)
 
     const item_detail = useSelector((state) => state.item.item)
     console.log(item_detail)

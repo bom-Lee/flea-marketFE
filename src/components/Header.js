@@ -3,22 +3,21 @@ import styled from 'styled-components';
 // import axios from "axios";
 import { Button } from '@material-ui/core';
 // import { Stack } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
-
-function Header(pops) {
+function Header(state) {
   // const Header = () => {
   const navigate = useNavigate();
 
   return (
     <div className="App">
       <Nav>
-        <btn
-          onClick={() => navigate("/")}
-          style={{ color: "white", fontSize: "24px", cursor: "pointer" }}
-        >
-          FleaMarket
-        </btn>
+      <Logo onClick={() => {
+              navigate("/")
+            }} style={{cursor: "pointer", color: 'white', fontSize: '24px'}}>FleaMarket</Logo>
+
+        <Text>닉네임</Text>
+
         <Btngruop>
           <Button
             onClick={() => navigate("/login")}
@@ -46,11 +45,11 @@ const Nav = styled.div`
         width: 100%;
         display: Flex;
         color: white;
-        padding: 20px;
+        // padding: 20px;
         font-weight: 300;
         font-size: 20px;
         font-weight: bold;
-        justify-content: center;
+        justify-content: left;
 
 `;
 
