@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 // const navigate = useNavigate();
 
 
+// const navigate = useNavigate();
+
 // //actions
 // const LOAD = "users/LOAD";
 // const CREATE = "users/CREATE";
@@ -35,7 +37,7 @@ const getUser = createAction(GETUSER, (user) => ({user}));
 
 // initialState
 // const initialState = {
-//     user_list: [],
+//     users: [],
 //     is_login: false,
 // };
 
@@ -126,32 +128,9 @@ const logOutApi = () =>{
 const SignUPApi = (username, nickname, pw, city) => {
     return function (dispatch, getState, { navigate }){
         console.log("SignUPApi", username, nickname, pw, city)
-        axios({
-            method: "POST",
-            url: "http://13.209.167.96//user/join",
-            headers: {
-                "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
-                "Content-Type":"application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
-                'Access-Control-Allow-Origin' : '*'
-            },
-            data: {
-                "username": username,
-                "nickname": nickname,
-                "pw": pw,
-                "city": city
-            }
-        }).then((res)=>{
-            console.log(res);
-            navigate("/login");
-            window.alert("축하합니다! 회원가입 되었습니다!")
-        }).catch(error=>{
-            console.log(error);
-            window.alert("회원가입 실패!");
-        });
+        
     }
 };
-
-
 
 // Reducer
 // export default function reducer(state = initialState, action = {} ) {
@@ -166,6 +145,7 @@ const SignUPApi = (username, nickname, pw, city) => {
 //         }
   
 //       default: return state;
+
 //     }
 //   }
 
@@ -213,7 +193,6 @@ const actionCreators = {
     loginAPI,
     logOutApi,
     SignUPApi,
-
 };
 
 export { actionCreators };

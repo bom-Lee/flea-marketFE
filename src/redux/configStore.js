@@ -14,6 +14,6 @@ const enhancer = applyMiddleware(...middlewares);
 const rootReducer = combineReducers({ user, item });
 // const store = createStore(rootReducer, composeWithDevTools(enhancer));
 
-const Store = createStore(rootReducer)
+const Store = createStore(rootReducer, enhancer)
 
 export default Store;

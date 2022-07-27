@@ -15,6 +15,7 @@ const UserInfo = () => {
   console.log(user[1]);
   //아이템
 
+
   const dispatch = useDispatch();
 
   return (

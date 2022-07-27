@@ -1,6 +1,8 @@
 
 import React from 'react';
 import './App.css';
+import axios from "axios";
+
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,7 +26,6 @@ function App() {
           <Route path="/itemup" element={<ItemUp />} />
           <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/Item" element={<Item />} />
-
         </Routes>
     </>
   );

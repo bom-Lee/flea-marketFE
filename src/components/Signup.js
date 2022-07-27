@@ -68,82 +68,91 @@ const Signup = () => {
   //   }
   // };
 
-
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
-    dispatch(actionCreators.SignUPApi());
-    
 
 
-  //   const passwordDoubleCheck = (pw, pwcheck) => {
-  //     if (pw !== pwcheck) {
-  //       alert("비밀번호가 다릅니다.");
-  //     }
-  //   };
+    const passwordDoubleCheck = (pw, pwcheck) => {
+      if (pw !== pwcheck) {
+        alert("비밀번호가 다릅니다.");
+      }
+    };
 
-  //   passwordDoubleCheck(inutRef.current[3].value, inutRef.current[4].value);
 
-  //   if (!username || !nickname || !city || !pw || !pwcheck) {
-  //     e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
-  //     alert("모든 값을 정확하게 입력해주세요!");
-  //     inutRef.current[0].focus(); // 자동 포커스
-  //     setInputs({
-  //       // 값 비워주기
-  //       ...inputs,
-  //       username: "",
-  //       nickname: "",
-  //       city: "",
-  //       pw: "",
-  //       pwcheck: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
-  //     });
-  //   } else if (!vaildUsername) {
-  //     e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
-  //     alert("유효하지 않은 email 입니다.");
-  //     inutRef.current[0].focus(); // 자동 포커스
-  //     setInputs({
-  //       // 값 비워주기
-  //       ...inputs,
-  //       username: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
-  //     });
-  //   } else if (!vaildNickname) {
-  //     e.preventDefault();
-  //     alert("유효하지 않은 nickname 입니다.");
-  //     setInputs({
-  //       ...inputs,
-  //       nickname: "",
-  //     });
-  //     inutRef.current[1].focus();
-  //   } else if (!vaildCity) {
-  //     e.preventDefault();
-  //     alert("유효하지 않은 주소 입니다.");
-  //     inutRef.current[2].focus();
-  //     setInputs({
-  //       ...inputs,
-  //       city: "",
-  //     });
-  //   } else if (!vaildPw) {
-  //     e.preventDefault();
-  //     alert("유효하지 않은 password 입니다.");
-  //     inutRef.current[3].focus();
-  //     setInputs({
-  //       ...inputs,
-  //       pw: "",
-  //     });
-  //   } else if (!vaildPwcheck) {
-  //     e.preventDefault();
-  //     alert("유효하지 않은 password 입니다.");
-  //     inutRef.current[4].focus();
-  //     setInputs({
-  //       ...inputs,
-  //       pwcheck: "",
-  //     });
-  //   } else {
-  //     //api요청만들기
-      
-
-  //     // navigate("/");
-  //     return alert("회원가입 완료!");
-  //   }
+    if (!username || !nickname || !city || !pw || !pwcheck) {
+      e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
+      alert("모든 값을 정확하게 입력해주세요!");
+      inutRef.current[0].focus(); // 자동 포커스
+      setInputs({
+        // 값 비워주기
+        ...inputs,
+        username: "",
+        nickname: "",
+        city: "",
+        pw: "",
+        pwcheck: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
+      });
+    } else if (!vaildUsername) {
+      e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
+      alert("유효하지 않은 email 입니다.");
+      inutRef.current[0].focus(); // 자동 포커스
+      setInputs({
+        // 값 비워주기
+        ...inputs,
+        username: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
+      });
+    } else if (!vaildNickname) {
+      e.preventDefault();
+      alert("유효하지 않은 nickname 입니다.");
+      setInputs({
+        ...inputs,
+        nickname: "",
+      });
+      inutRef.current[1].focus();
+    } else if (!vaildCity) {
+      e.preventDefault();
+      alert("유효하지 않은 주소 입니다.");
+      inutRef.current[2].focus();
+      setInputs({
+        ...inputs,
+        city: "",
+      });
+    } else if (!vaildPw) {
+      e.preventDefault();
+      alert("유효하지 않은 password 입니다.");
+      inutRef.current[3].focus();
+      setInputs({
+        ...inputs,
+        pw: "",
+      });
+    } else if (!vaildPwcheck) {
+      e.preventDefault();
+      alert("유효하지 않은 password 입니다.");
+      inutRef.current[4].focus();
+      setInputs({
+        ...inputs,
+        pwcheck: "",
+      });
+    } else {
+      //api 요청 만들기
+      axios({
+        method: "POST",
+        url: "http://13.209.167.96/user/join",
+        data: {
+          "username": username,
+          "nickname": nickname,
+          "pw": pw,
+          "city": city
+        }
+      }).then((res)=>{
+        console.log(res);
+        window.alert("축하합니다! 회원가입 되었습니다!")
+        navigate("/login");
+      }).catch(error=>{
+        console.log(error);
+        window.alert("회원가입 실패!");
+      });
+    }
   };
 
   return (
