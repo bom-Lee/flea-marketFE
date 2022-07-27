@@ -1,13 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';  
+import styled from 'styled-components';
 
 import { Button } from '@material-ui/core';
 
-import { useParams,useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-
 const ItemUp = () => {
+    const navigate = useNavigate()
     const params = useParams();
     console.log(params.nickname)
 
@@ -19,18 +19,16 @@ const ItemUp = () => {
     })
     console.log(include);
 
-    const navigate = useNavigate()
-
     // const [selected, setSelected] = React.useState("");
     // const handleSelect = (e) => {
     //   setSelected(e.target.value);
     // };
     // // console.log(selected);
 
-    const title_ref = React.useRef(null);
+    const itemName_ref = React.useRef(null);
     const image_ref = React.useRef(null);
-    const price_ref = React.useRef(null);
-    const detail_ref = React.useRef(null);
+    const itemPrice_ref = React.useRef(null);
+    const itemDetail_ref = React.useRef(null);
 
 
     return (
@@ -38,14 +36,10 @@ const ItemUp = () => {
         <H2>상품등록</H2>
 
         <Container>
-            {/* <Userinfo>
-                <UserNickName>닉네임</UserNickName>
-                <Address>주소</Address>
-            </Userinfo> */}
-
             <Subject>
                 <span>상품명</span>
-                <Input ref={title_ref} type='text'
+                <Input ref={itemName_ref} type='text'
+
                 rules={[{ required: true, massage: '제목을 입력하세요!'}]}
                 placeholder="상품 제목을 입력해주세요" />
                 <br />
@@ -55,11 +49,12 @@ const ItemUp = () => {
                 <br />
                 
                 <span>가격</span>
-                <Input ref={price_ref} style={{width: "200px"}} placeholder="숫자만 입력해주세요" />
+
+                <Input ref={itemPrice_ref} style={{width: "200px"}} placeholder="숫자만 입력해주세요" />
                 <br />
 
                 <p>상품소개</p>
-                <textarea ref={detail_ref} style={{width: "450px", height: "300px"}}
+                <textarea ref={itemDetail_ref} style={{width: "450px", height: "300px"}}
                 rules={[{ required: true, massage: '내용을 입력하세요!'}]}
                 placeholder="상품 설명을 입력해주세요" />
             </Subject>
