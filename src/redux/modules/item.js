@@ -9,10 +9,6 @@ const LOAD = "item/LOAD";
 // const ADD_ITEM = "ADD_ITEM";
  
 // Action Creators
-<<<<<<< HEAD
-=======
-
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
   export function loadItem(items) {
   return { type: LOAD, items }
 }
@@ -40,22 +36,6 @@ const initialState = {
         {
           nickname: "봄봄",
           comment: "구경 잘하고 갑니다~"
-<<<<<<< HEAD
-        },
-        {
-          nickname: "123",
-          comment: "100원 안될까요?"
-        },
-        {
-          nickname: "dd",
-          comment: "커피커피"
-        },
-
-      ]
-    }
-    ],
-  
-=======
         }
       ]
     },
@@ -121,8 +101,7 @@ const initialState = {
         }
       ]
     },
-    
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
+
   isLoading: false,
 };
 

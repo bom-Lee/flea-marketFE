@@ -6,11 +6,7 @@ import thunk from "redux-thunk";
 import user from './modules/user';
 import item from './modules/item';
 import { composeWithDevTools } from 'redux-devtools-extension';
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> 이봄
 // export const history = createBrowserHistory();
 
 const middlewares = [thunk];

@@ -2,69 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 // import axios from "axios";
 import { Button } from '@material-ui/core';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-// import { Stack } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom'
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
-
-import user from '../redux/modules/user'
-
-// import { Stack } from '@material-ui/core';
-import { useParams, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from "react-redux";
-
-// const Header = ({ data }) => {
-//   const navigate = useNavigate()
-//   console.log(data)
-
-const Header = () => {
-  const user = useSelector((state) => state.user.users)
-  console.log(user);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-    return (
-        <div className="App">
-          <Nav>
-            <Logo onClick={() => {
-              navigate("/")
-            }} style={{color: 'white', fontSize: '24px', cursor: "pointer"}}>FleaMarket</Logo>
-
-            <Text>{user[1].nickname}</Text>
-
-            {/* 로그인 후 상태 */}
-            <Btngruop>
-            {/* <Button onClick={() => {
-                navigate('/itemUp')
-                }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
-                작성하기
-                </Button>
-              <Button onClick={() => {
-                window.alert("로그아웃!")
-                navigate("/login")
-              }} style={{color: 'white'}} variant="outlined" color="inherit">
-                로그아웃</Button> */}
-
-<<<<<<< HEAD
-              {/* 로그인 전 상태 */}
-              <Button onClick={() => {
-                navigate('/login')
-                }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
-                로그인</Button>
-              <Button onClick={() => {
-                navigate('/signup')
-              }} style={{color: 'white'}} variant="outlined" color="inherit">
-                회원가입</Button>
-=======
-      </Nav>
-    </div>
-  );
-};
-=======
-
 import user from '../redux/modules/user'
 
 // import { Stack } from '@material-ui/core';
@@ -113,43 +50,23 @@ const Header = () => {
                 navigate('/signup')
               }} style={{color: 'white'}} variant="outlined" color="inherit">
                 회원가입</Button> */}
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
             </Btngruop>
 
           </Nav>
         </div>
       );
     }
-<<<<<<< HEAD
-=======
->>>>>>> 이봄
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
 
 const Nav = styled.div`
         background: black;
         width: 100%;
-<<<<<<< HEAD
-        // padding-top: 40px;
-=======
-<<<<<<< HEAD
         display: Flex;
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
         color: white;
         font-size: 20px;
         font-weight: bold;
-<<<<<<< HEAD
-        justify-content: center;
-=======
         justify-content: left;
-=======
         // padding-top: 40px;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        justify-content: center;
->>>>>>> 이봄
 
->>>>>>> faedde405d57bcc624b93539478bcff475315adc
 `;
 
 const Logo = styled.div`
