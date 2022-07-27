@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import { Button } from '@material-ui/core';
 
 // import item from './elements/item'
+
 import Cards from './Cards';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -14,7 +15,8 @@ const Main = () => {
     console.log(user)
 
     const item = useSelector((state) => state.item.items)
-    console.log(item)
+    console.log(item,"아이템")
+
 
     // React.useEffect(() => {
      

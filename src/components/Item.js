@@ -46,7 +46,6 @@ const Item = () => {
         <Container>
 
         <ItemName>{item[0].itemName}</ItemName>
-        
         <Image src={item[0].images} style={{"backgroundColor": "#efefef", width: "95%", height: "350px"}}/>
             <Userinfo>
                 <UserNickName>{item[0].nickname}</UserNickName><Address>{item.city}</Address>
@@ -92,6 +91,7 @@ const Container = styled.div`
     height: 75%;
     border: solid 1px #dadada;
     border-radius: 8px;
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -133,10 +133,11 @@ const Subject = styled.div`
 const ItemPrice = styled.div`
     font-size: 20px;
     font-weight: bold;
+
     &::after{
         content: "원";
         font-size: 13px;
-        margin-left: 3px;
+        margin-left: 3px;}
 `;
 
 const Input = styled.input`

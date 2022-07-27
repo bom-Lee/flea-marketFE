@@ -1,167 +1,153 @@
-import { createAction, handleActions } from "redux-actions";
-import { produce } from "immer";
-import axios from 'axios';
+import React from "react";
+import styled from "styled-components";
 
-// //actions
-const LOAD = "users/LOAD";
-const CREATE = "users/CREATE";
-// const LOG_IN = "LOG_IN"; //로그인
-// const LOG_OUT = "LOG_OUT"; //로그아웃
-// const LOGIN_CHECK = 'LOGIN_CHECK';
-// const GET_USER = "GET_USER"; //유저정보 가져오기
+// import { history } from '../redux/configStore'
 
-// //actionCreators
-export function loadPost(users) {
-    return { type: LOAD, users}
-  }
-  export function createList(users) {
-      return { type: CREATE, users };
-    }
-// const logIn = createAction(LOG_IN, (user) => ({user}));
-// const logOut = createAction(LOG_OUT, (user) => ({user}));
-// const loginCheck = createAction(LOGIN_CHECK, (session) => ({session}));
-// const getUser = createAction(GET_USER, (user) => ({user}));
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
+// const Cards = () => {
+//   const navigate = useNavigate()
 
-//initialState
-// const initialState = {
-//     user_list: [],
-//     is_login: false,
-// };
-const initialState = {
-    users: [
-        {
-            username: "spring123@gmail.com",
-            nickname: "봄봄",
-            pw: "bombom123",
-            city: "대구시"
-        },
-        {
-          username: "ondoo@gmail.com",
-            nickname: "온두",
-            pw: "ondoo123",
-            city: "고양시"
+  // const item = useSelector((state) => state.item.items)
+  //   console.log(item)
 
-        }
-    ]
-}
+const Cards = (props) => {
+  const navigate = useNavigate()
+  const { images, itemName, itemPrice, city } = props.item;
+  console.log(props)
 
-// //로그인api
-// const loginAPI = (username,pwd) => {
-//     return function (dispatch, getState, { history }) {
-//         axios({
-//             method: "POST",
-//             url: "http://15.165.158.39/login",
-//             headers: {
-//                 "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
-//                 "Content-Type":"application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
-//                 'Access-Control-Allow-Origin' : '*'
-//             },
-//             data: {
-//                 "username":username,
-//                 "password": pwd,
-//             }
-//         }).then((res)=>{
-//             console.log(res);
-//             localStorage.setItem("name", JSON.stringify(`${username}`)); //localStorage의 텍스트형이므로 객체 json.stringfy로 변환
-//             sessionStorage.setItem("token", res.data);
-//             dispatch(logIn({
-//                 username:username,
-//                 password:pwd,
-//             }));
-//             history.push("/");
-//             window.alert("정상적으로 로그인 되었습니다!")
-//         }).catch(error=>{
-//             console.log(error);
-//             window.alert("로그인 실패!");
-//         });
+  return (
+    <>
+    {/* <Item onClick={() => {
+      navigate('/boards/' + data.nickname + '/items')
+    }}></Item> */}
+    
+          <Card>
+                <CardInner>
+                {/* onClick={()=>navigate.push(`/item/${idx}`)}
+                window.location.href = `/detail/${id}` */}
+                    <CardHead>
+                    {/* src={images} */}
+                    <img src={images} alt="" />
+                    <Sth />
+                    </CardHead>
+                    <CardContents>
+                    <ItemName>{itemName}</ItemName>
+                    <ItemContentBottom>
+                        <Price>{itemPrice}</Price>
+                        <City>{city}</City>
+                        {/* <Time>2시간 전</Time> */}
+                    </ItemContentBottom>
+                    </CardContents>
+                </CardInner>
+          </Card>
+          </>
+    );
+};
 
-//     };
-// };
-
-// //로그아웃
-// const logOutApi = () =>{
-//     return function (dispatch, getState, { history }){
-//         localStorage.removeItem("name");
-//         sessionStorage.removeItem("token");
-//         dispatch(logOut());
-//         history.replace("/");
+// const Item = styled.div`
+//   width: 100%;
+//   height: 200px;
+//   background-color: #C7FCEC;
+//   border-radius: 20px;
+//   border: 4px solid #1ABC9C;
+//   box-sizing: border-box;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   transition: 0.7s;
+//   cursor: pointer;
+//   margin: 30px auto;
+//   &:hover {
+//     box-shadow: 0 0 14px #0C7586;
+//     transform: scale(1.05);
+//   }
+//   &:hover h2 {
+//     font-size: 25px;
+//   }
+//   @media (max-width: 768px) {
+//     &:hover h2 {
+//       font-size: 17px;
 //     }
+//   }
+// `
 
-// }
-
-// //회원가입api
-// const SignUPApi = (username,pwd) => {
-//     return function (dispatch, getState, { history }){
-//         axios({
-//             method: "POST",
-//             url: "http://15.165.158.39/join",
-//             headers: {
-//                 "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
-//                 "Content-Type":"application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
-//                 'Access-Control-Allow-Origin' : '*'
-//             },
-//             data: {
-//                 "username":username,
-//                 "password": pwd,
-//             }
-//         }).then((res)=>{
-//             console.log(res);
-//             history.push("/login");
-//             window.alert("축하합니다! 회원가입 되었습니다!")
-//         }).catch(error=>{
-//             console.log(error);
-//             window.alert("회원가입 실패!");
-//         });
-//     }
-// };
-
-
-
-//Reducer
-export default function reducer(state = initialState, action = {} ) {
-    switch (action.type) {
-      case "users/LOAD": {
-        return state;
-      }
-      case "users/CREATE": {
-          console.log(state);
-          const new_user = [...state.users, action.users];
-          return { users: new_user };
-        }
+const Card = styled.div`
+  width: 196px;
+  // margin-bottom: 10px;
+  // background-color: blue;
+  padding : 0px 20px 0px 20px;
   
-      default: return state;
-    }
+  &:nth-child(5n) {
+    margin-right: 0;
   }
-// export default handleActions({
-//     [LOGIN_CHECK]: (state,action) => produce(state,(draft) => {
-//         draft.is_login = action.payload.session;
-//     }),
-//     [LOG_IN]: (state,action) => produce(state,(draft) => {
-//         draft.user = action.payload.user;
-//         draft.is_login = true;
-//     }),
-//     [LOG_OUT]: (state,action) => produce(state,(draft) => {
-//         draft.user = null;
-//         draft.is_login = false;
-//     }),
-//     [GET_USER]: (state, action) => produce(state, (draft) => {
-        
-//     }),
+`;
 
-// }, initialState);
+const CardInner = styled.a`
+  border: 1px solid rgb(238, 238, 238);
+  background: rgb(255, 255, 255);
+  display: block;
+`;
+
+const CardHead = styled.div`
+  position: relative;
+  width: 100%;
+  height: 194px;
+  img {
+    vertical-align: bottom;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const Sth = styled.div``;
+const CardContents = styled.div`
+  padding: 15px 10px;
+  height: 50px;
+`;
+const ItemName = styled.div`
+  position: relative;
+  font-size: 14px;
+  padding-bottom: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const ItemContentBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+`;
+
+const Price = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  &::after{
+    content: "원";
+    font-size: 13px;
+    margin-left: 3px;
+  }
+`;
+
+const City = styled.div`
+  font-size: 12px;
+  color: rgb(136, 136, 136);
+`;
+
+const Time = styled.div`
+  font-size: 12px;
+  color: rgb(136, 136, 136);
+`;
 
 
-// //action creator export
-// const actionCreators = {
-//     loginCheck,
-//     logIn,
-//     logOut,
-//     getUser,
-//     loginAPI,
-//     logOutApi,
-//     SignUPApi,
 
-// };
-
-// export {actionCreators};
+export default Cards;

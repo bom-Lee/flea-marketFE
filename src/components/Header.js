@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 // import axios from "axios";
 import { Button } from '@material-ui/core';
-
 import user from '../redux/modules/user'
 
 // import { Stack } from '@material-ui/core';
@@ -61,11 +60,13 @@ const Header = () => {
 const Nav = styled.div`
         background: black;
         width: 100%;
-        // padding-top: 40px;
+        display: Flex;
         color: white;
         font-size: 20px;
         font-weight: bold;
-        justify-content: center;
+        justify-content: left;
+        // padding-top: 40px;
+
 `;
 
 const Logo = styled.div`
@@ -95,6 +96,7 @@ const Text = styled.div`
           margin-left: 5px;
         }
 `;
+
 const Btngruop = styled.div`
         display: inline-block;
         position: absolute;

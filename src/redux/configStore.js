@@ -1,4 +1,3 @@
-
 import { legacy_createStore as createStore, combineReducers, applyMiddleware } from "redux";
 // createStore 쓰지 않기를 권고함
 import thunk from "redux-thunk";
@@ -6,11 +5,7 @@ import thunk from "redux-thunk";
 import user from './modules/user';
 import item from './modules/item';
 import { composeWithDevTools } from 'redux-devtools-extension';
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> 이봄
 // export const history = createBrowserHistory();
 
 const middlewares = [thunk];
@@ -22,4 +17,3 @@ const rootReducer = combineReducers({ user, item });
 const Store = createStore(rootReducer)
 
 export default Store;
-
