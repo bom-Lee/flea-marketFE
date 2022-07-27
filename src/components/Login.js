@@ -1,34 +1,27 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import { username, pw } from "./Signup";
+import Signup from "./Signup";
 import { formatMs } from "@material-ui/core";
-
 
 const Login = () => {
   const navigate = useNavigate();
 
-  
-  // const user = useSelector((state) => state.user.items);
-  // console.log(user[0]);
 
-  // const [username, onChangeUsername, setUsername] = useInput("");
-  // const [pw, onChangePw, setPw] = useInput("");
+  const [username, setUsername] = useState("");
+  const [pw, setPw] = useState("");
 
-  // const onReset = useCallback(() => {
-  //   setUsername("");
-  //   setPw("");
-  // }, [setUsername, setPw]);
+  const [button, setButton] = useState(true);
+  function changeButton() {
+    username.includes("@") && pw.length >= 6 ? setButton(false) : setButton(true);
+  }
 
-  // const onLogin = () => {
-  //   if (!id || !pw) {
-  //     alert("모든 값을 정확하게 입력해주세요");
-  //     return;
-  //   }
+  const goToMain = () => {
+    navigate("/");
+  };
 
-  //   alert("로그인");
-  //   onReset();
-  // };
+  const realUsername = "kiki@naver.com";
+  const realPw = "12345678";
 
   return (
     <>
@@ -36,6 +29,10 @@ const Login = () => {
         <H2>로그인</H2>
         <Input
           id="username"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+          onKeyUp={changeButton}
           // value={username}
           // onChange={handleChange}
           label="이메일"
@@ -43,15 +40,35 @@ const Login = () => {
           required
         />
         <Input
+          id="pw"
+          onChange={(e) => {
+            setPw(e.target.value);
+          }}
+          onKeyUp={changeButton}
           type="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
-          id="pw"
           // value={pw}
           // onChange={handleChange}
           required
         />
-        <Button onClick={() => navigate("/")}>로그인</Button>
+        <Button
+          type="button"
+          className="loginButton"
+          disabled={button}
+          onClick={(e) => {
+            if (realUsername == username) {
+              if (realPw == pw) {
+                e.stopPropagation();
+                goToMain();
+              }
+            } else {
+              alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+            }
+          }}
+        >
+          로그인
+        </Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
         </P>

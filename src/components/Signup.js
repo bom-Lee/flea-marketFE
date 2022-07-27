@@ -162,7 +162,7 @@ const Signup = () => {
         />
 
         <Input
-          type="text"
+          type="password"
           name="pw"
           placeholder="비밀번호"
           value={pw}
@@ -171,7 +171,7 @@ const Signup = () => {
         />
 
         <Input
-          type="text"
+          type="password"
           name="pwcheck"
           placeholder="비밀번호 확인"
           value={pwcheck}
