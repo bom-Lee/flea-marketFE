@@ -1,18 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import { vaildEmail, vaildPw } from "./Signup";
-
+import { username, pw } from "./Signup";
 import { formatMs } from "@material-ui/core";
 
-// import { Link } from "react-router-dom"
 
 const Login = () => {
   const navigate = useNavigate();
 
+  
   // const user = useSelector((state) => state.user.items);
   // console.log(user[0]);
-
 
   // const [username, onChangeUsername, setUsername] = useInput("");
   // const [pw, onChangePw, setPw] = useInput("");

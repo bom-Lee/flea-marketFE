@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from 'axios';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -23,8 +24,7 @@ const Signup = () => {
   const vaildUsername = username.match(regexp);
   const vaildNickname = nickname.length >= 2 && nickname.length <= 10;
   const vaildCity =
-    inputs.city.length >= 2 &&
-    inputs.city[inputs.city.length - 1] === "시";
+    inputs.city.length >= 2 && inputs.city[inputs.city.length - 1] === "시";
   const vaildPw = pw.length >= 6 && pw.length <= 12;
   const vaildPwcheck = pwcheck.length >= 6 && pwcheck.length <= 12;
 
@@ -35,7 +35,7 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     });
   };
-//
+  //
   // const handleClick = async () => {
   //   if (!id || !pw) {
   //     alert("모든 값을 정확하게 입력해주세요");
@@ -66,7 +66,7 @@ const Signup = () => {
     const passwordDoubleCheck = (pw, pwcheck) => {
       if (pw !== pwcheck) {
         alert("비밀번호가 다릅니다.");
-      } 
+      }
     };
 
     passwordDoubleCheck(inutRef.current[3].value, inutRef.current[4].value);
@@ -78,9 +78,13 @@ const Signup = () => {
       setInputs({
         // 값 비워주기
         ...inputs,
-        username: "", nickname: "",city: "",pw: "",pwcheck: "",// 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
+        username: "",
+        nickname: "",
+        city: "",
+        pw: "",
+        pwcheck: "", // 바뀐 값 빼고 나머지는 그대로 스프레드 연산자
       });
-    }else if (!vaildUsername) {
+    } else if (!vaildUsername) {
       e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
       alert("유효하지 않은 email 입니다.");
       inutRef.current[0].focus(); // 자동 포커스
@@ -178,7 +182,9 @@ const Signup = () => {
           <Button
             type="button"
             onClick={handleClick}
-            disabled={username.length < 1 && pw.length < 1 && username.length < 1}
+            disabled={
+              username.length < 1 && pw.length < 1 && username.length < 1
+            }
           >
             회원가입
           </Button>

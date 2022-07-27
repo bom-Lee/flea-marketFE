@@ -1,51 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Cards from './Cards'
+import Cards from "./Cards";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
-//유저 정보
+  //유저 정보
   const user = useSelector((state) => state.user.users);
   console.log(user[1]);
- //아이템 
+  //아이템
 
   return (
-  
-      <>
-        <Userinfo>
-          <H3>{user[1].nickname}님 정보</H3>
-          <I label="이메일" placeholder="이메일">
-            이메일 <P>{user[1].username}</P>
-          </I>
-          <I label="닉네임" placeholder="닉네임">
-            닉네임<P>{user[1].nickname}</P>
-          </I>
-          <I label="주소" placeholder="__시">
-            주소 <P>{user[1].city}</P>
-          </I>
-        </Userinfo>
-        
-        <ItemList>
-            <Section>
-            <H3>작성 게시글 목록</H3>
-            <ItemInfos>
-                <ItemContainer>
-                    {/* {products.map((info, idx) =><Cards data = {info} key={idx} />)} */}
-                    <Cards />
-                    <Cards />
-                    <Cards />
-                    <Cards />
-                </ItemContainer>
-            </ItemInfos>
-            </Section>
-        </ItemList>
-      
-      </>
+    <>
+      <Userinfo>
+        <H3>{user[1].nickname}님 정보</H3>
+        <I label="이메일" placeholder="이메일">
+          이메일 <P>{user[1].username}</P>
+        </I>
+        <I label="닉네임" placeholder="닉네임">
+          닉네임<P>{user[1].nickname}</P>
+        </I>
+        <I label="주소" placeholder="__시">
+          주소 <P>{user[1].city}</P>
+        </I>
+      </Userinfo>
 
+      <ItemList>
+        <Section>
+          <H3>작성 게시글 목록</H3>
+          <ItemInfos>
+            <ItemContainer>
+              {/* {products.map((info, idx) =><Cards data = {info} key={idx} />)} */}
+              <Cards />
+              <Cards />
+              <Cards />
+              <Cards />
+            </ItemContainer>
+          </ItemInfos>
+        </Section>
+      </ItemList>
+    </>
   );
 };
-
 
 // const Box = styled.div`
 //   display: flex;
@@ -57,7 +53,7 @@ const Userinfo = styled.div`
   height: 150px;
   position: relative;
   left: 50%;
-  border: solid 1px #dadada; 
+  border: solid 1px #dadada;
   border-radius: 2em;
   transform: translateX(-50%);
   margin-top: 100px;
@@ -114,8 +110,8 @@ const Card = styled.div`
   width: 196px;
   // margin-bottom: 10px;
   // background-color: blue;
-  padding : 0px 20px 0px 20px;
-  
+  padding: 0px 20px 0px 20px;
+
   &:nth-child(5n) {
     margin-right: 0;
   }
@@ -127,42 +123,38 @@ const CardInner = styled.a`
   display: block;
 `;
 
-
 const ItemList = styled.div`
-width: 55%;
+  width: 55%;
   left: 25%;
   position: relative;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    // background-color: orange;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // background-color: orange;
 `;
 
 const H2 = styled.h2`
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const Section = styled.section`
-    min-width: 512px;
-    margin: 0px auto;
-    padding: 3.5rem 0px 1.5rem;
-    // background-color: pink;
-    display: inline-block;
-`
-
-const ItemInfos = styled.div`
-    position: relative;
-    overflow: hidden;
-
-`
-const ItemContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+  min-width: 512px;
+  margin: 0px auto;
+  padding: 3.5rem 0px 1.5rem;
+  // background-color: pink;
+  display: inline-block;
 `;
 
-
+const ItemInfos = styled.div`
+  position: relative;
+  overflow: hidden;
+`;
+const ItemContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default UserInfo;
