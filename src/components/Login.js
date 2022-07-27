@@ -1,43 +1,36 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 import { useNavigate, Link } from "react-router-dom";
-import { username, pw } from "./Signup";
-
-import cookie from 'react-cookie'
-import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
-
-import { formatMs } from "@material-ui/core";
-
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../redux/modules/user";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  // const [userName, setUsername] = React.useState("");
-  // const [pw, setPw] = React.useState("");
+  const [username, setUsername] = useState("");
+  const [pw, setPw] = useState("");
 
-  
-  const user = React.useSelector((state) => state.user.items);
-  console.log(user[0]);
+  const [button, setButton] = useState(true);
+  function changeButton() {
+    username.includes("@") && pw.length >= 6
+      ? setButton(false)
+      : setButton(true);
+  }
 
-  const [username, onChangeUsername, setUsername] = React.useInput("");
-  const [pw, onChangePw, setPw] = React.useInput("");
-
-  const onReset = React.useCallback(() => {
-    setUsername("");
-    setPw("");
-  }, [setUsername, setPw]);
-
-  const onLogin = () => {
-    if (!username || !pw) {
-      alert("모든 값을 정확하게 입력해주세요");
-      return;
-    }
-
-
-    alert("로그인");
-    onReset();
+  const goToMain = () => {
+    navigate("/");
   };
+
+  const realUsername = "kiki@naver.com";
+  const realPw = "12345678";
+
+  const dispatch = useDispatch();
+  const [user_info, setUserInfo] = useState({});
+
+  // const login = () => {
+  //   dispatch(LoginSV(user_info));
+  // };
 
   return (
     <>
@@ -45,22 +38,47 @@ const Login = () => {
         <H2>로그인</H2>
         <Input
           id="username"
-          // value={username}
+          type="text"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+          onKeyUp={changeButton}
+          value={username}
           // onChange={handleChange}
           label="이메일"
           placeholder="이메일을 입력해주세요"
           required
         />
         <Input
+          id="pw"
           type="password"
+          onChange={(e) => {
+            setPw(e.target.value);
+          }}
+          onKeyUp={changeButton}
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
-          id="pw"
-          // value={pw}
+          value={pw}
           // onChange={handleChange}
           required
         />
-        <Button onClick={() => navigate("/")}>로그인</Button>
+        <Button
+          type="button"
+          className="loginButton"
+          disabled={button}
+          onClick={(e) => {
+            if (realUsername == username) {
+              if (realPw == pw) {
+                e.stopPropagation();
+                goToMain();
+              }
+            } else {
+              alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+            }
+          }}
+        >
+          로그인
+        </Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
         </P>

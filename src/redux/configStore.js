@@ -1,4 +1,3 @@
-
 import { legacy_createStore as createStore, combineReducers, applyMiddleware } from "redux";
 // createStore 쓰지 않기를 권고함
 import thunk from "redux-thunk";
@@ -18,4 +17,3 @@ const rootReducer = combineReducers({ user, item });
 const Store = createStore(rootReducer, enhancer)
 
 export default Store;
-

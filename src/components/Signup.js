@@ -78,7 +78,6 @@ const Signup = () => {
       }
     };
 
-    passwordDoubleCheck(inutRef.current[3].value, inutRef.current[4].value);
 
     if (!username || !nickname || !city || !pw || !pwcheck) {
       e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
@@ -187,7 +186,7 @@ const Signup = () => {
         />
 
         <Input
-          type="text"
+          type="password"
           name="pw"
           placeholder="비밀번호"
           value={pw}
@@ -196,7 +195,7 @@ const Signup = () => {
         />
 
         <Input
-          type="text"
+          type="password"
           name="pwcheck"
           placeholder="비밀번호 확인"
           value={pwcheck}
@@ -214,7 +213,6 @@ const Signup = () => {
             회원가입
           </Button>
         {/* </Link> */}
-
         <P>
           회원이신가요? <Link to="/login">로그인</Link>
         </P>

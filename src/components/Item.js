@@ -131,18 +131,30 @@ const Address = styled.div`
 const Subject = styled.div`
     text-align: left;
     padding: 20px;
+<<<<<<< HEAD
+    font-size: 14px;
+=======
     font-size: 16px;
+>>>>>>> f22284d00a4c1192bbba30277b7dacbf7158dfb7
     // margin-left: 16px;
 `;
 
 const ItemPrice = styled.div`
     font-size: 20px;
     font-weight: bold;
+<<<<<<< HEAD
+
+    &::after{
+        content: "원";
+        font-size: 13px;
+        margin-left: 3px;}
+=======
     margin-left: 5px;
     &::after{
         content: "원";
         font-size: 13px;
         margin-left: 5px;
+>>>>>>> f22284d00a4c1192bbba30277b7dacbf7158dfb7
 `;
 
 const Input = styled.input`
