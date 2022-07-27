@@ -213,7 +213,6 @@ const actionCreators = {
     loginAPI,
     logOutApi,
     SignUPApi,
-
 };
 
 export { actionCreators };
