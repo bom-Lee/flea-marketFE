@@ -11,7 +11,7 @@ const ItemUp = () => {
     const params = useParams();
     console.log(params.nickname)
 
-    const item_detail = useSelector((state) => state.item.item)
+    const item_detail = useSelector((state) => state.item.items)
     console.log(item_detail)
 
     const include = item_detail.find((item) => {

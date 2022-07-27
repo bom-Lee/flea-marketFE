@@ -4,9 +4,15 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from 'axios';
 
+import cookie from 'react-cookie'
+import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+import { actionCreators } from "../redux/modules/user";
+
 const Signup = () => {
   const navigate = useNavigate();
-  // 포커스를 주기 위한 useRef
+  const dispatch = useDispatch();
+  
+  // // 포커스를 주기 위한 useRef
   const inutRef = useRef([]); // ref 배열형태로 저장해서 여러 값을 인덱스로 컨트롤 가능
 
   // input value state 관리
@@ -61,8 +67,11 @@ const Signup = () => {
   //     }
   //   }
   // };
+
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
+
+
     const passwordDoubleCheck = (pw, pwcheck) => {
       if (pw !== pwcheck) {
         alert("비밀번호가 다릅니다.");
@@ -126,8 +135,24 @@ const Signup = () => {
         pwcheck: "",
       });
     } else {
-      //api요청만들기
-      return alert("회원가입 완료!");
+      //api 요청 만들기
+      axios({
+        method: "POST",
+        url: "http://13.209.167.96/user/join",
+        data: {
+          "username": username,
+          "nickname": nickname,
+          "pw": pw,
+          "city": city
+        }
+      }).then((res)=>{
+        console.log(res);
+        window.alert("축하합니다! 회원가입 되었습니다!")
+        navigate("/login");
+      }).catch(error=>{
+        console.log(error);
+        window.alert("회원가입 실패!");
+      });
     }
   };
 
@@ -178,17 +203,18 @@ const Signup = () => {
           onChange={handleChange}
           ref={(el) => (inutRef.current[4] = el)}
         />
-        <Link to={`/${username}`}>
+        {/* <Link to={`/${username}`}> */}
           <Button
             type="button"
             onClick={handleClick}
-            disabled={
-              username.length < 1 && pw.length < 1 && username.length < 1
-            }
+            // disabled={
+            //   username.length < 1 && pw.length < 1 && username.length < 1
+            // }
           >
             회원가입
           </Button>
-        </Link>
+        {/* </Link> */}
+
         <P>
           회원이신가요? <Link to="/login">로그인</Link>
         </P>
@@ -239,7 +265,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   font-size: 18px;
   font-weight: 700;
   line-height: 49px;

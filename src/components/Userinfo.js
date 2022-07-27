@@ -10,6 +10,9 @@ const UserInfo = () => {
   console.log(user[1]);
   //아이템
 
+  const item = useSelector((state) => state.item)
+  console.log(item)
+
   return (
     <>
       <Userinfo>
@@ -28,15 +31,8 @@ const UserInfo = () => {
       <ItemList>
         <Section>
           <H3>작성 게시글 목록</H3>
-          <ItemInfos>
-            <ItemContainer>
-              {/* {products.map((info, idx) =><Cards data = {info} key={idx} />)} */}
-              <Cards />
-              <Cards />
-              <Cards />
-              <Cards />
-            </ItemContainer>
-          </ItemInfos>
+          
+            {/* {item.map((item, idx) => <Cards item = {item} key={idx} />)} */}
         </Section>
       </ItemList>
     </>

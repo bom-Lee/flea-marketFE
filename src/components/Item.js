@@ -33,8 +33,6 @@ const Item = () => {
     // };
     // // console.log(selected);
 
-
-
     // const itemName_ref = React.useRef(null);
     // const image_ref = React.useRef(null);
     // const itemPrice_ref = React.useRef(null);
@@ -44,17 +42,23 @@ const Item = () => {
     return (
         <ContainerBox>
         <Container>
-
         <ItemName>{item[0].itemName}</ItemName>
         <Image src={item[0].images} style={{"backgroundColor": "#efefef", width: "95%", height: "350px"}}/>
             <Userinfo>
-                <UserNickName>{item[0].nickname}</UserNickName><Address>{item.city}</Address>
+                <UserNickName>{item[0].nickname}</UserNickName><Address>{item[0].city}</Address>
             </Userinfo>
         <Subject>
             <ItemPrice>{item[0].itemPrice}</ItemPrice>
-
             <p>{item[0].itemDetail}</p>
         </Subject>
+
+        <div>
+            <p>봄봄</p>
+            <p>노곤한 오후로다..</p>
+
+        </div>
+            
+    
 
         {/* <Button type="submit" onClick={() => {
             window.alert("작성완료!")
@@ -78,8 +82,9 @@ const ItemName = styled.div`
     font-size: 20px;
     font-weight: bold;
     text-align: left;
-    margin: 10px auto;
+    margin: 20px auto;
     margin-left: 20px;
+    margin-bottom: 20px;
 `;
 
 const Image = styled.div`
@@ -126,18 +131,18 @@ const Address = styled.div`
 const Subject = styled.div`
     text-align: left;
     padding: 20px;
-    font-size: 14px;
+    font-size: 16px;
     // margin-left: 16px;
 `;
 
 const ItemPrice = styled.div`
     font-size: 20px;
     font-weight: bold;
-
+    margin-left: 5px;
     &::after{
         content: "원";
         font-size: 13px;
-        margin-left: 3px;
+        margin-left: 5px;
 `;
 
 const Input = styled.input`
@@ -154,7 +159,6 @@ const Input = styled.input`
     background: #fff;
     box-sizing: border-box;
 `;
-
 
 // const TextArea =styled.div`
 //     width: 450px;

@@ -1,34 +1,43 @@
 import React from "react";
 import styled from "styled-components";
+
 import { useNavigate, Link } from "react-router-dom";
 import { username, pw } from "./Signup";
+
+import cookie from 'react-cookie'
+import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+
 import { formatMs } from "@material-ui/core";
 
 
 const Login = () => {
   const navigate = useNavigate();
 
+  // const [userName, setUsername] = React.useState("");
+  // const [pw, setPw] = React.useState("");
+
   
-  // const user = useSelector((state) => state.user.items);
-  // console.log(user[0]);
+  const user = React.useSelector((state) => state.user.items);
+  console.log(user[0]);
 
-  // const [username, onChangeUsername, setUsername] = useInput("");
-  // const [pw, onChangePw, setPw] = useInput("");
+  const [username, onChangeUsername, setUsername] = React.useInput("");
+  const [pw, onChangePw, setPw] = React.useInput("");
 
-  // const onReset = useCallback(() => {
-  //   setUsername("");
-  //   setPw("");
-  // }, [setUsername, setPw]);
+  const onReset = React.useCallback(() => {
+    setUsername("");
+    setPw("");
+  }, [setUsername, setPw]);
 
-  // const onLogin = () => {
-  //   if (!id || !pw) {
-  //     alert("모든 값을 정확하게 입력해주세요");
-  //     return;
-  //   }
+  const onLogin = () => {
+    if (!username || !pw) {
+      alert("모든 값을 정확하게 입력해주세요");
+      return;
+    }
 
-  //   alert("로그인");
-  //   onReset();
-  // };
+
+    alert("로그인");
+    onReset();
+  };
 
   return (
     <>
