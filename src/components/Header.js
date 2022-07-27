@@ -31,7 +31,7 @@ const Header = () => {
 
             {/* 로그인 후 상태 */}
             <Btngruop>
-            <Button onClick={() => {
+            {/* <Button onClick={() => {
                 navigate('/itemUp')
                 }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
                 작성하기
@@ -40,17 +40,17 @@ const Header = () => {
                 window.alert("로그아웃!")
                 navigate("/login")
               }} style={{color: 'white'}} variant="outlined" color="inherit">
-                로그아웃</Button>
+                로그아웃</Button> */}
 
               {/* 로그인 전 상태 */}
-              {/* <Button onClick={() => {
+              <Button onClick={() => {
                 navigate('/login')
                 }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
-                Login</Button>
+                로그인</Button>
               <Button onClick={() => {
                 navigate('/signup')
               }} style={{color: 'white'}} variant="outlined" color="inherit">
-                회원가입</Button> */}
+                회원가입</Button>
             </Btngruop>
 
           </Nav>

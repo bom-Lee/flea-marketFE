@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import Cards from './Cards'
 
 const UserInfo = () => {
   const dispatch = useDispatch();
-
+//유저 정보
   const user = useSelector((state) => state.user.users);
   console.log(user[1]);
+ //아이템 
+
   return (
   
       <>
@@ -16,21 +19,33 @@ const UserInfo = () => {
             이메일 <P>{user[1].username}</P>
           </I>
           <I label="닉네임" placeholder="닉네임">
-            닉네임 <P>{user[1].nickname}</P>
+            닉네임<P>{user[1].nickname}</P>
           </I>
           <I label="주소" placeholder="__시">
             주소 <P>{user[1].city}</P>
           </I>
         </Userinfo>
         
-        <H3>작성 게시글 목록</H3>
-        
-          <p>상품명</p>
+        <ItemList>
+            <Section>
+            <H3>작성 게시글 목록</H3>
+            <ItemInfos>
+                <ItemContainer>
+                    {/* {products.map((info, idx) =><Cards data = {info} key={idx} />)} */}
+                    <Cards />
+                    <Cards />
+                    <Cards />
+                    <Cards />
+                </ItemContainer>
+            </ItemInfos>
+            </Section>
+        </ItemList>
       
       </>
 
   );
 };
+
 
 // const Box = styled.div`
 //   display: flex;
@@ -40,9 +55,10 @@ const UserInfo = () => {
 const Userinfo = styled.div`
   width: 400px;
   height: 150px;
-  position: absolute;
+  position: relative;
   left: 50%;
-  border: solid 1px #dadada;
+  border: solid 1px #dadada; 
+  border-radius: 2em;
   transform: translateX(-50%);
   margin-top: 100px;
   padding: 50px;
@@ -68,7 +84,7 @@ const I = styled.div`
 `;
 
 const P = styled.div`
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   margin-left: 10px;
   color: black;
@@ -93,5 +109,60 @@ const P = styled.div`
 //   background: #e0e2e6;
 //   border-radius: 8px;
 // `;
+
+const Card = styled.div`
+  width: 196px;
+  // margin-bottom: 10px;
+  // background-color: blue;
+  padding : 0px 20px 0px 20px;
+  
+  &:nth-child(5n) {
+    margin-right: 0;
+  }
+`;
+
+const CardInner = styled.a`
+  border: 1px solid rgb(238, 238, 238);
+  background: rgb(255, 255, 255);
+  display: block;
+`;
+
+
+const ItemList = styled.div`
+width: 55%;
+  left: 25%;
+  position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // background-color: orange;
+`;
+
+const H2 = styled.h2`
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+const Section = styled.section`
+    min-width: 512px;
+    margin: 0px auto;
+    padding: 3.5rem 0px 1.5rem;
+    // background-color: pink;
+    display: inline-block;
+`
+
+const ItemInfos = styled.div`
+    position: relative;
+    overflow: hidden;
+
+`
+const ItemContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+
 
 export default UserInfo;

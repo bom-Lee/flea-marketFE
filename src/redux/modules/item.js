@@ -9,8 +9,8 @@ const LOAD = "item/LOAD";
 // const ADD_ITEM = "ADD_ITEM";
  
 // Action Creators
-  export function loadItem(item) {
-  return { type: LOAD, item }
+  export function loadItem(items) {
+  return { type: LOAD, items }
 }
 
 // const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
@@ -23,18 +23,35 @@ const LOAD = "item/LOAD";
 // };
 
 const initialState = {
-  item: [
+  items: [
     {
       username: "spring123@gmail.com",
       nickname: "봄봄",
-      images: "https://unsplash.com/photos/q9HFIVO9owM",
-      title: "개발자 머그컵 팝니다",
-      price: "5000",
-      city: "대구시"
-  }
+      images: "https://images.unsplash.com/photo-1515165737480-16f5a6cff26d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1156&q=80",
+      itemName: "개발자 머그컵 팝니다",
+      itemPrice: "5000",
+      itemDetail: "뉴 커피.. 일이 끝나지 않았다면.. 커피가 비어있다면 설탕과 크림으로 커피를 리필한다.. 커피를 리필한 다음 홀짝이며 작업을 실행한다..",
+      city: "대구시",
+      comment: [
+        {
+          nickname: "봄봄",
+          comment: "구경 잘하고 갑니다~"
+        },
+        {
+          nickname: "123",
+          comment: "100원 안될까요?"
+        },
+        {
+          nickname: "dd",
+          comment: "커피커피"
+        },
+
+      ]
+    }
     ],
+  
   isLoading: false,
-};  
+};
 
 // // const mockAPl = 'https://run.mocky.io/v3/ce3bcb61-6cb3-471d-bc40-e3243360b529'
 // const products_API = 'http://15.165.158.39/'
@@ -95,13 +112,13 @@ const initialState = {
 // }
 
 // Reducer
-export default function reducer(state = initialState, action = {} ) {
+export default function reducer(State = initialState, action = {} ) {
   switch (action.type) {
     case "item/LOAD": {
       return { item: action.item }
     }
 
-    default: return state;
+    default: return State;
   }
 }
 

@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 // //actions
 const LOAD = "users/LOAD";
@@ -47,8 +48,8 @@ const initialState = {
 }
 
 // //로그인api
-// const loginAPI = (username,pwd) => {
-//     return function (dispatch, getState, { history }) {
+// const loginAPI = (username,pw) => {
+//     return function (dispatch, getState, { navigate }) {
 //         axios({
 //             method: "POST",
 //             url: "http://15.165.158.39/login",
@@ -59,7 +60,7 @@ const initialState = {
 //             },
 //             data: {
 //                 "username":username,
-//                 "password": pwd,
+//                 "pw": pw,
 //             }
 //         }).then((res)=>{
 //             console.log(res);
@@ -67,9 +68,9 @@ const initialState = {
 //             sessionStorage.setItem("token", res.data);
 //             dispatch(logIn({
 //                 username:username,
-//                 password:pwd,
+//                 pw:pw,
 //             }));
-//             history.push("/");
+//             navigate.push("/");
 //             window.alert("정상적으로 로그인 되었습니다!")
 //         }).catch(error=>{
 //             console.log(error);
@@ -81,21 +82,21 @@ const initialState = {
 
 // //로그아웃
 // const logOutApi = () =>{
-//     return function (dispatch, getState, { history }){
+//     return function (dispatch, getState, { navigate }){
 //         localStorage.removeItem("name");
 //         sessionStorage.removeItem("token");
 //         dispatch(logOut());
-//         history.replace("/");
+//         navigate.replace("/");
 //     }
 
 // }
 
 // //회원가입api
-// const SignUPApi = (username,pwd) => {
-//     return function (dispatch, getState, { history }){
+// const SignUPApi = (username,pw) => {
+//     return function (dispatch, getState, { navigate }){
 //         axios({
 //             method: "POST",
-//             url: "http://15.165.158.39/join",
+//             url: "http://15.165.158.39/signup",
 //             headers: {
 //                 "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
 //                 "Content-Type":"application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
@@ -103,7 +104,7 @@ const initialState = {
 //             },
 //             data: {
 //                 "username":username,
-//                 "password": pwd,
+//                 "pw": pw,
 //             }
 //         }).then((res)=>{
 //             console.log(res);

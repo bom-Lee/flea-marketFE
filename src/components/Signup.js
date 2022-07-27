@@ -195,11 +195,12 @@ const Container = styled.div`
   width: 400px;
   height: 360px;
   border: solid 1px #dadada;
+  border-radius: 2em;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 100px;
-  padding: 30px;
+  padding: 50px;
 `;
 
 const H2 = styled.div`
@@ -208,7 +209,7 @@ const H2 = styled.div`
   justify-content: center;
   font-size: 25px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const P = styled.div`
@@ -216,7 +217,7 @@ const P = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 70px;
 `;
 
 const Input = styled.input`

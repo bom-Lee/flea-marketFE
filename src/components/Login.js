@@ -10,6 +10,10 @@ import { formatMs } from "@material-ui/core";
 const Login = () => {
   const navigate = useNavigate();
 
+  // const user = useSelector((state) => state.user.items);
+  // console.log(user[0]);
+
+
   // const [username, onChangeUsername, setUsername] = useInput("");
   // const [pw, onChangePw, setPw] = useInput("");
 
@@ -62,8 +66,9 @@ const Container = styled.div`
   width: 400px;
   height: 220px;
   border: solid 1px #dadada;
+  border-radius: 2em;
   margin-top: 100px;
-  padding: 20px;
+  padding: 50px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -75,7 +80,7 @@ const H2 = styled.div`
   justify-content: center;
   font-size: 25px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const P = styled.div`
@@ -83,7 +88,7 @@ const P = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 70px;
 `;
 
 const Input = styled.input`
