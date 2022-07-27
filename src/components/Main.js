@@ -6,6 +6,10 @@ import styled from 'styled-components';
 import Cards from './Cards';
 import { useSelector, useDispatch } from 'react-redux';
 
+// import cookie from 'react-cookie'
+// import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+// import { actionCreators as userActions } from "../redux/modules/user";
+
 
 const Main = () => {
     const dispatch = useDispatch()
@@ -13,14 +17,14 @@ const Main = () => {
     const user = useSelector((state) => state.user)
     console.log(user)
 
-    const item = useSelector((state) => state.item.items)
+    const item = useSelector((state) => state.item)
     console.log(item)
 
     // React.useEffect(() => {
      
-    //     //쿠키에 저장된 액세스 토큰이 존재할 때만 서버에 검증 요청
+    //     // 쿠키에 저장된 액세스 토큰이 존재할 때만 서버에 검증 요청
     //    if(getCookie("is_login")){
-    //      dispatch(userActions.loginCheckDB());
+    //      dispatch(userActions.loginCheck());
     //    }
        
     //  }, []);
@@ -38,7 +42,7 @@ const Main = () => {
             <H2>오늘의 상품 추천</H2>
             <ItemInfos>
                 <ItemContainer>
-                    {item.map((item, idx) => <Cards item = {item} key={idx} />)}
+                    {/* {item.map((item, idx) => <Cards item = {item} key={idx} />)} */}
                 </ItemContainer>
             </ItemInfos>
             </Section>

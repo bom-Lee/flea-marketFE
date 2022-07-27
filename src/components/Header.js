@@ -9,16 +9,34 @@ import user from '../redux/modules/user'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 
+import cookie from 'react-cookie'
+import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+import { actionCreators as userActions } from "../redux/modules/user";
+
+
 // const Header = ({ data }) => {
 //   const navigate = useNavigate()
 //   console.log(data)
 
 const Header = () => {
-  const user = useSelector((state) => state.user.users)
-  console.log(user);
+  const user = useSelector((state) => state.user)
+  console.log("나야나",user);
+
+// const Header = (props) => {
+    // const { nickname } = props.user;
+    // console.log("나야나", props)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+     
+  // 쿠키에 저장된 액세스 토큰이 존재할 때만 서버에 검증 요청
+   if(getCookie("is_login")){
+     dispatch(userActions.loginCheck());
+   }
+   
+ }, []);
 
     return (
         <div className="App">
@@ -27,7 +45,8 @@ const Header = () => {
               navigate("/")
             }} style={{color: 'white', fontSize: '24px', cursor: "pointer"}}>FleaMarket</Logo>
 
-            <Text>{user[1].nickname}</Text>
+            <Text>닉네임자리</Text>
+            {/* {user.nickname} */}
 
             {/* 로그인 후 상태 */}
             <Btngruop>

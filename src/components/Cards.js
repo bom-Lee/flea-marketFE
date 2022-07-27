@@ -149,6 +149,4 @@ const Time = styled.div`
   color: rgb(136, 136, 136);
 `;
 
-
-
 export default Cards;

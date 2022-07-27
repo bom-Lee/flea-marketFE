@@ -4,9 +4,15 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from 'axios';
 
+import cookie from 'react-cookie'
+import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 const Signup = () => {
   const navigate = useNavigate();
-  // 포커스를 주기 위한 useRef
+  const dispatch = useDispatch();
+  
+  // // 포커스를 주기 위한 useRef
   const inutRef = useRef([]); // ref 배열형태로 저장해서 여러 값을 인덱스로 컨트롤 가능
 
   // input value state 관리
@@ -61,8 +67,14 @@ const Signup = () => {
   //     }
   //   }
   // };
+
+
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
+    dispatch(userActions.SignUPApi(username, nickname, pw, city));
+    console.log("handleClick", username, nickname, pw, city)
+
+
     const passwordDoubleCheck = (pw, pwcheck) => {
       if (pw !== pwcheck) {
         alert("비밀번호가 다릅니다.");
@@ -127,6 +139,9 @@ const Signup = () => {
       });
     } else {
       //api요청만들기
+      
+
+      // navigate("/");
       return alert("회원가입 완료!");
     }
   };
@@ -178,7 +193,7 @@ const Signup = () => {
           onChange={handleChange}
           ref={(el) => (inutRef.current[4] = el)}
         />
-        <Link to={`/${username}`}>
+        {/* <Link to={`/${username}`}> */}
           <Button
             type="button"
             onClick={handleClick}
@@ -188,7 +203,7 @@ const Signup = () => {
           >
             회원가입
           </Button>
-        </Link>
+        {/* </Link> */}
         <P>
           회원이신가요? <Link to="/login">로그인</Link>
         </P>
