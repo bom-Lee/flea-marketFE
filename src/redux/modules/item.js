@@ -18,7 +18,8 @@ const setItems = createAction(SETITEM,(data)=>({data}));
 const addItems = createAction(ADDITEM, (data) => ({data}));
 
 const initialState = {
-  product_list: [],
+  items: [],
+  itemone: {},
   isLoading: false,
 };
 
@@ -66,6 +67,7 @@ const initialState = {
 //       city: "대구시",
 //       comment: [
 //         {
+//           id: 1,
 //           nickname: "봄봄",
 //           comment: "구경 잘하고 갑니다~"
 //         }
@@ -110,7 +112,7 @@ const initialState = {
 // const mockAPl = 'https://run.mocky.io/v3/ce3bcb61-6cb3-471d-bc40-e3243360b529'
 const items_API = 'http://13.209.167.96/'
 const getItemsAPI = () => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState, { navigate }) {
     dispatch(loading(true));
     axios
       .get(items_API)
@@ -123,7 +125,7 @@ const getItemsAPI = () => {
 };
 
 const addItemsAPI = (itemName, image, itemPrice, itemDetail) => {
-  return function (dispatch, getState, {history}){
+  return function (dispatch, getState, { navigate }){
     axios({
       method: "POST",
       url: "http://13.209.167.96/item/update",
@@ -141,7 +143,7 @@ const addItemsAPI = (itemName, image, itemPrice, itemDetail) => {
     }).then((res)=>{
       console.log(res);
       dispatch(addItems(res.data))
-      history.push("/");
+      navigate("/");
     }).catch(error=>{
       console.log(error);
     });  
