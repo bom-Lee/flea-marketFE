@@ -1,19 +1,20 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import Signup from "./Signup";
-import { formatMs } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../redux/modules/user";
 
 const Login = () => {
   const navigate = useNavigate();
-
 
   const [username, setUsername] = useState("");
   const [pw, setPw] = useState("");
 
   const [button, setButton] = useState(true);
   function changeButton() {
-    username.includes("@") && pw.length >= 6 ? setButton(false) : setButton(true);
+    username.includes("@") && pw.length >= 6
+      ? setButton(false)
+      : setButton(true);
   }
 
   const goToMain = () => {
@@ -23,17 +24,25 @@ const Login = () => {
   const realUsername = "kiki@naver.com";
   const realPw = "12345678";
 
+  const dispatch = useDispatch();
+  const [user_info, setUserInfo] = useState({});
+
+  // const login = () => {
+  //   dispatch(LoginSV(user_info));
+  // };
+
   return (
     <>
       <Container>
         <H2>로그인</H2>
         <Input
           id="username"
+          type="text"
           onChange={(e) => {
             setUsername(e.target.value);
           }}
           onKeyUp={changeButton}
-          // value={username}
+          value={username}
           // onChange={handleChange}
           label="이메일"
           placeholder="이메일을 입력해주세요"
@@ -41,14 +50,14 @@ const Login = () => {
         />
         <Input
           id="pw"
+          type="password"
           onChange={(e) => {
             setPw(e.target.value);
           }}
           onKeyUp={changeButton}
-          type="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
-          // value={pw}
+          value={pw}
           // onChange={handleChange}
           required
         />
