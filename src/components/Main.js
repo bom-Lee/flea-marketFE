@@ -3,19 +3,6 @@ import styled from 'styled-components';
 // import { Button } from '@material-ui/core';
 
 // import item from './elements/item'
-<<<<<<< HEAD
-import Cards from './Cards'
-
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-  
-
-const Main = () => {
-    const navigate = useNavigate();
-
-    const data = useSelector((state) => state.users)
-    console.log(data)
-=======
 import Cards from './Cards';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -28,7 +15,6 @@ const Main = () => {
 
     const item = useSelector((state) => state.item.items)
     console.log(item)
->>>>>>> 이봄
 
     // React.useEffect(() => {
      
@@ -41,32 +27,18 @@ const Main = () => {
 
     return (
         <>
-<<<<<<< HEAD
-        {/* <MainBanner style={{"backgroundColor": "#efefef", "width":"100%", "height" : "450px"
-    }}/> */}
-    <img style={{width: "450px", height: "100%"}} src={"https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-2-91a2286453bdf82dea16a7f0ee4ceb9dd325eae0e5a2a9967ba72c344bf8f2fc.webp"} alt="" />
-=======
         <MainBanner>
             <img style={{width: "450px", height: "100%"}} src={"https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-2-91a2286453bdf82dea16a7f0ee4ceb9dd325eae0e5a2a9967ba72c344bf8f2fc.webp"} alt="" />
 
         </MainBanner>
         {/* <MainBanner style={{"backgroundColor": "#efefef", "width":"100%", "height" : "450px"
     }}/> */}
->>>>>>> 이봄
         <ItemList>
             <Section>
             <H2>오늘의 상품 추천</H2>
             <ItemInfos>
                 <ItemContainer>
-<<<<<<< HEAD
-                    {/* {products.map((info, idx) =><Cards data = {info} key={idx} />)} */}
-                    <Cards />
-                    <Cards />
-                    <Cards />
-                    <Cards />
-=======
                     {item.map((item, idx) => <Cards item = {item} key={idx} />)}
->>>>>>> 이봄
                 </ItemContainer>
             </ItemInfos>
             </Section>
