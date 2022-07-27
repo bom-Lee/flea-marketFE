@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './App.css';
 import axios from "axios";
@@ -25,10 +26,17 @@ function App() {
           <Route path="/itemup" element={<ItemUp />} />
           <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/Item" element={<Item />} />
-
         </Routes>
     </>
   );
 }
 
 export default App;
+
+const MainBox = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;

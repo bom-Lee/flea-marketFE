@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import { Button } from '@material-ui/core';
 
 // import item from './elements/item'
+
 import Cards from './Cards';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -19,6 +20,7 @@ const Main = () => {
 
     const item = useSelector((state) => state.item)
     console.log(item)
+
 
     // React.useEffect(() => {
      
@@ -95,5 +97,6 @@ const ItemContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
+
 
 export default Main;

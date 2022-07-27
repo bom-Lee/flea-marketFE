@@ -6,8 +6,8 @@ import { getCookie, setCookie, deleteCookie } from "../../shared/Cookie";
 
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate();
 
+// const navigate = useNavigate();
 
 // //actions
 // const LOAD = "users/LOAD";
@@ -143,6 +143,7 @@ const SignUPApi = (username, nickname, pw, city) => {
 //         }
   
 //       default: return state;
+
 //     }
 //   }
 

@@ -101,7 +101,6 @@ const Container = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-
     margin-top: 100px;
     padding: 20px 20px 20px 20px;
     margin: 10px 10px 10px 10px;

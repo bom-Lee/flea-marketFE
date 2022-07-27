@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-
 // const Cards = () => {
 //   const navigate = useNavigate()
 
@@ -29,6 +28,7 @@ const Cards = (props) => {
                 {/* onClick={()=>navigate.push(`/item/${idx}`)}
                 window.location.href = `/detail/${id}` */}
                     <CardHead>
+                    {/* src={images} */}
                     <img src={images} alt="" />
                     <Sth />
                     </CardHead>
@@ -78,7 +78,6 @@ const Card = styled.div`
   // margin-bottom: 10px;
   // background-color: blue;
   padding : 0px 20px 0px 20px;
-
   
   &:nth-child(5n) {
     margin-right: 0;

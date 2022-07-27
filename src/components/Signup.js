@@ -68,7 +68,6 @@ const Signup = () => {
   //   }
   // };
 
-
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
 
@@ -215,6 +214,7 @@ const Signup = () => {
             회원가입
           </Button>
         {/* </Link> */}
+
         <P>
           회원이신가요? <Link to="/login">로그인</Link>
         </P>

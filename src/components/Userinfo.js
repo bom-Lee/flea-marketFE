@@ -5,7 +5,6 @@ import Cards from "./Cards";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
-
   //유저 정보
   const user = useSelector((state) => state.user.users);
   console.log(user[1]);
