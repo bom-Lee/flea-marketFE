@@ -9,15 +9,13 @@ const UserInfo = () => {
   const navigate = useNavigate();
   //유저 정보
   const user = useSelector((state) => state.user.users);
-  // 
-  const item = useSelector((state) => state.item.items)
-  // 
+  //
+  const item = useSelector((state) => state.item.items);
+  //
   console.log(user[1]);
   //아이템
 
-    const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -32,15 +30,14 @@ const UserInfo = () => {
         <I label="주소" placeholder="주소">
           주소 <P>{user[1].city}</P>
         </I>
-        </Userinfo>
+      </Userinfo>
       <ItemInfos>
         <H3>오늘의 상품 추천</H3>
-       
-       
         <ItemContainer>
-        {item.map((item, idx) => <Cards item = {item} key={idx} />)}
+          {item.map((item, idx) => (
+            <Cards item={item} key={idx} />
+          ))}
         </ItemContainer>
-   
       </ItemInfos>
     </>
   );
@@ -71,23 +68,15 @@ const H3 = styled.div`
   margin-bottom: 30px;
 `;
 
-const Section = styled.section`
-    min-width: 512px;
-    margin: 0px auto;
-    padding: 3.5rem 0px 1.5rem;
-    // background-color: pink;
-    display: inline-block;
-`
 const ItemInfos = styled.div`
-    position: relative;
-    left: 26%;
-    width: 1000px;
-margin-top: 100px;
-
-`
+  position: relative;
+  left: 26%;
+  margin-top: 100px;
+`;
 const ItemContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
 `;
 
 const I = styled.div`
@@ -105,19 +94,6 @@ const P = styled.div`
   font-weight: 700;
   margin-left: 10px;
   color: black;
-`;
-
-const ItemList = styled.div`
-    max-width: 100%;
-    max-height: 90%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-basis: 33.3%;
-    flex-direction: column;
-    // background-color: orange;
 `;
 
 export default UserInfo;
