@@ -33,9 +33,15 @@ const UserInfo = () => {
           주소 <P>{user[1].city}</P>
         </I>
         </Userinfo>
-        <ItemList>
+      <ItemInfos>
+        <H3>오늘의 상품 추천</H3>
+       
+       
+        <ItemContainer>
         {item.map((item, idx) => <Cards item = {item} key={idx} />)}
-      </ItemList>
+        </ItemContainer>
+   
+      </ItemInfos>
     </>
   );
 };
@@ -63,6 +69,25 @@ const H3 = styled.div`
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 30px;
+`;
+
+const Section = styled.section`
+    min-width: 512px;
+    margin: 0px auto;
+    padding: 3.5rem 0px 1.5rem;
+    // background-color: pink;
+    display: inline-block;
+`
+const ItemInfos = styled.div`
+    position: relative;
+    left: 26%;
+    width: 1000px;
+margin-top: 100px;
+
+`
+const ItemContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
 `;
 
 const I = styled.div`
