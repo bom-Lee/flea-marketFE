@@ -1,23 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
+import { username, pw } from "./Signup";
+import { formatMs } from "@material-ui/core";
 
-// import { Link } from "react-router-dom"
 
 const Login = () => {
-  
   const navigate = useNavigate();
 
-  // const [id, onChangeId, setId] = useInput("");
-  // const [pwd, onChangePwd, setPwd] = useInput("");
+  
+  // const user = useSelector((state) => state.user.items);
+  // console.log(user[0]);
+
+  // const [username, onChangeUsername, setUsername] = useInput("");
+  // const [pw, onChangePw, setPw] = useInput("");
 
   // const onReset = useCallback(() => {
-  //   setId("");
-  //   setPwd("");
-  // }, [setId, setPwd]);
+  //   setUsername("");
+  //   setPw("");
+  // }, [setUsername, setPw]);
 
   // const onLogin = () => {
-  //   if (!id || !pwd) {
+  //   if (!id || !pw) {
   //     alert("모든 값을 정확하게 입력해주세요");
   //     return;
   //   }
@@ -30,23 +34,23 @@ const Login = () => {
     <>
       <Container>
         <H2>로그인</H2>
-            <Input
-              id="user_id"
-              // value={id}
-              // onChange={onChangeId}
-              label="이메일"
-              placeholder="이메일을 입력해주세요"
-              required
-            />
-            <Input
-              type="password"
-              label="비밀번호"
-              placeholder="비밀번호를 입력해주세요"
-              id="user_pwd"
-              // value={pwd}
-              // onChange={onChangePwd}
-              required
-            />
+        <Input
+          id="username"
+          // value={username}
+          // onChange={handleChange}
+          label="이메일"
+          placeholder="이메일을 입력해주세요"
+          required
+        />
+        <Input
+          type="password"
+          label="비밀번호"
+          placeholder="비밀번호를 입력해주세요"
+          id="pw"
+          // value={pw}
+          // onChange={handleChange}
+          required
+        />
         <Button onClick={() => navigate("/")}>로그인</Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
@@ -60,9 +64,12 @@ const Container = styled.div`
   width: 400px;
   height: 220px;
   border: solid 1px #dadada;
-  display: inline-block;
+  border-radius: 2em;
   margin-top: 100px;
-  padding: 20px;
+  padding: 50px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const H2 = styled.div`
@@ -71,7 +78,7 @@ const H2 = styled.div`
   justify-content: center;
   font-size: 25px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const P = styled.div`
@@ -79,7 +86,7 @@ const P = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 70px;
 `;
 
 const Input = styled.input`
@@ -105,7 +112,7 @@ const Button = styled.div`
   margin: 16px 0 7px;
   cursor: pointer;
   text-align: center;
-  color: slateblue;
+  color: white;
   border: none;
   border-radius: 8px;
   background-color: black;
