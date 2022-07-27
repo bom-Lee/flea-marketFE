@@ -4,11 +4,19 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
+<<<<<<< HEAD
     "@material-ui/styles": "^4.11.5",
+=======
+    "@material-ui/icons": "^4.11.3",
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
+<<<<<<< HEAD
+=======
+    "firebase": "^9.9.1",
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -17,6 +25,10 @@
     "redux": "^4.2.0",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.9",
+<<<<<<< HEAD
+=======
+    "redux-logger": "^3.0.6",
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.0"

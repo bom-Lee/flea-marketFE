@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 
+<<<<<<< HEAD
 const Cards = () => {
   const navigate = useNavigate()
 
@@ -18,6 +19,19 @@ const Cards = () => {
 //   const navigate = useNavigate()
 //   const { nickname, images, title, price, city } = props.data;
 
+=======
+// const Cards = () => {
+//   const navigate = useNavigate()
+
+  // const item = useSelector((state) => state.item.items)
+  //   console.log(item)
+
+const Cards = (props) => {
+  const navigate = useNavigate()
+  const { images, itemName, itemPrice, city } = props.item;
+  console.log(props)
+
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
   return (
     <>
     {/* <Item onClick={() => {
@@ -26,6 +40,7 @@ const Cards = () => {
     
           <Card>
                 <CardInner>
+<<<<<<< HEAD
                 {/* onClick={()=>navigate.push(`/item/${idx}`)} */}
                     <CardHead>
                     <img src={item[0].images} alt="" />
@@ -36,6 +51,19 @@ const Cards = () => {
                     <ItemContentBottom>
                         <Price>{item[0].itemPrice}</Price>
                         <City>{item[0].city}</City>
+=======
+                {/* onClick={()=>navigate.push(`/item/${idx}`)}
+                window.location.href = `/detail/${id}` */}
+                    <CardHead>
+                    <img src={images} alt="" />
+                    <Sth />
+                    </CardHead>
+                    <CardContents>
+                    <ItemName>{itemName}</ItemName>
+                    <ItemContentBottom>
+                        <Price>{itemPrice}</Price>
+                        <City>{city}</City>
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
                         {/* <Time>2시간 전</Time> */}
                     </ItemContentBottom>
                     </CardContents>

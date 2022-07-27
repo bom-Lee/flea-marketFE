@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { useSelector, useDispatch } from "react-redux";
 import Cards from "./Cards";
+=======
+<<<<<<< HEAD
+import { useNavigate, Link } from "react-router-dom";
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
 
 const UserInfo = () => {
   const dispatch = useDispatch();
@@ -10,6 +15,7 @@ const UserInfo = () => {
   console.log(user[1]);
   //아이템
 
+<<<<<<< HEAD
   return (
     <>
       <Userinfo>
@@ -40,6 +46,56 @@ const UserInfo = () => {
         </Section>
       </ItemList>
     </>
+=======
+  
+  return (<>
+    <Container>
+      <H3>회원정보</H3>
+      <div label="이메일" placeholder="이메일">
+        이메일
+      </div>
+      <div label="닉네임" placeholder="닉네임">
+        닉네임
+      </div>
+      <div label="비밀번호" type="password" placeholder="비밀번호">
+        비밀번호
+      </div>
+      <div label="주소" placeholder="__시">
+        대구시
+=======
+import { useSelector, useDispatch } from 'react-redux';
+
+const UserInfo = () => {
+  const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.user.users);
+    console.log(user[1]);
+
+  return (<>
+    <Container>
+      <H3>{user[1].nickname} 님, 환영합니다</H3>
+      <div label="이메일" placeholder="이메일">
+        이메일 : {user[1].username}
+      </div>
+      <div label="닉네임" placeholder="닉네임">
+        {user[1].nickname}
+      </div>
+      <div label="비밀번호" type="password" placeholder="비밀번호">
+        {user[1].pw}
+      </div>
+      <div label="주소" placeholder="__시">
+      {user[1].city}
+>>>>>>> 이봄
+      </div>
+      <br></br></Container>
+      <Container2>
+      <H3>작성 게시글 목록</H3>
+      <PostList>
+        <Post />
+        <p>상품명</p>
+      </PostList>
+    </Container2></>
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
   );
 };
 
@@ -157,4 +213,8 @@ const ItemContainer = styled.div`
   flex-wrap: wrap;
 `;
 
+<<<<<<< HEAD
 export default UserInfo;
+=======
+export default UserInfo;
+>>>>>>> 이봄

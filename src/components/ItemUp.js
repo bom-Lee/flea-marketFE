@@ -19,7 +19,10 @@ const ItemUp = () => {
     })
     console.log(include);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
     // const [selected, setSelected] = React.useState("");
     // const handleSelect = (e) => {
     //   setSelected(e.target.value);
@@ -40,6 +43,10 @@ const ItemUp = () => {
             <Subject>
                 <span>상품명</span>
                 <Input ref={itemName_ref} type='text'
+<<<<<<< HEAD
+=======
+
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
                 rules={[{ required: true, massage: '제목을 입력하세요!'}]}
                 placeholder="상품 제목을 입력해주세요" />
                 <br />
@@ -49,6 +56,10 @@ const ItemUp = () => {
                 <br />
                 
                 <span>가격</span>
+<<<<<<< HEAD
+=======
+
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
                 <Input ref={itemPrice_ref} style={{width: "200px"}} placeholder="숫자만 입력해주세요" />
                 <br />
 

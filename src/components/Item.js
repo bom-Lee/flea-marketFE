@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
 import styled from 'styled-components';
 
 import { Button } from '@material-ui/core';
@@ -6,6 +9,10 @@ import { Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useResolvedPath } from 'react-router-dom';
 
+<<<<<<< HEAD
+=======
+// props : item.item => map으로 item.comment
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
 
 const Item = () => {
     const dispatch = useDispatch();
@@ -45,7 +52,12 @@ const Item = () => {
         <Container>
 
         <ItemName>{item[0].itemName}</ItemName>
+<<<<<<< HEAD
         <Image src={item[0].images} style={{width: "95%", height: "350px"}}/>
+=======
+        
+        <Image src={item[0].images} style={{"backgroundColor": "#efefef", width: "95%", height: "350px"}}/>
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
             <Userinfo>
                 <UserNickName>{item[0].nickname}</UserNickName><Address>{item.city}</Address>
             </Userinfo>
@@ -90,10 +102,18 @@ const Container = styled.div`
     height: 75%;
     border: solid 1px #dadada;
     border-radius: 8px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+<<<<<<< HEAD
+=======
+
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
     margin-top: 100px;
     padding: 20px 20px 20px 20px;
     margin: 10px 10px 10px 10px;
@@ -125,12 +145,23 @@ const Subject = styled.div`
     text-align: left;
     padding: 20px;
     font-size: 14px;
+<<<<<<< HEAD
     margin-left: 16px;
+=======
+    // margin-left: 16px;
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
 `;
 
 const ItemPrice = styled.div`
     font-size: 20px;
     font-weight: bold;
+<<<<<<< HEAD
+=======
+    &::after{
+        content: "원";
+        font-size: 13px;
+        margin-left: 3px;
+>>>>>>> faedde405d57bcc624b93539478bcff475315adc
 `;
 
 const Input = styled.input`
