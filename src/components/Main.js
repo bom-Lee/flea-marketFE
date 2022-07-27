@@ -13,10 +13,8 @@ const Main = () => {
     const user = useSelector((state) => state.user)
     console.log(user)
 
-    const item = useSelector((state) => state.item)
+    const item = useSelector((state) => state.item.items)
     console.log(item)
-
-
 
     // React.useEffect(() => {
      
@@ -29,16 +27,18 @@ const Main = () => {
 
     return (
         <>
+        <MainBanner>
+            <img style={{width: "450px", height: "100%"}} src={"https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-2-91a2286453bdf82dea16a7f0ee4ceb9dd325eae0e5a2a9967ba72c344bf8f2fc.webp"} alt="" />
+
+        </MainBanner>
         {/* <MainBanner style={{"backgroundColor": "#efefef", "width":"100%", "height" : "450px"
     }}/> */}
-    <img style={{width: "450px", height: "100%"}} src={"https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-2-91a2286453bdf82dea16a7f0ee4ceb9dd325eae0e5a2a9967ba72c344bf8f2fc.webp"} alt="" />
         <ItemList>
             <Section>
             <H2>오늘의 상품 추천</H2>
             <ItemInfos>
                 <ItemContainer>
-                    {/* {item.map((item, idx) => <Cards item = {item} key={idx} />)} */}
-                    <Cards />
+                    {item.map((item, idx) => <Cards item = {item} key={idx} />)}
                 </ItemContainer>
             </ItemInfos>
             </Section>

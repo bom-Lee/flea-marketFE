@@ -36,20 +36,72 @@ const initialState = {
         {
           nickname: "봄봄",
           comment: "구경 잘하고 갑니다~"
-        },
-        {
-          nickname: "123",
-          comment: "100원 안될까요?"
-        },
-        {
-          nickname: "dd",
-          comment: "커피커피"
-        },
-
+        }
       ]
-    }
+    },
+    {
+      username: "spring123@gmail.com",
+      nickname: "봄봄",
+      images: "https://images.unsplash.com/photo-1515165737480-16f5a6cff26d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1156&q=80",
+      itemName: "개발자 머그컵 팝니다",
+      itemPrice: "5000",
+      itemDetail: "뉴 커피.. 일이 끝나지 않았다면.. 커피가 비어있다면 설탕과 크림으로 커피를 리필한다.. 커피를 리필한 다음 홀짝이며 작업을 실행한다..",
+      city: "대구시",
+      comment: [
+        {
+          nickname: "봄봄",
+          comment: "구경 잘하고 갑니다~"
+        }
+      ]
+    },
+    {
+      username: "spring123@gmail.com",
+      nickname: "봄봄",
+      images: "https://images.unsplash.com/photo-1515165737480-16f5a6cff26d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1156&q=80",
+      itemName: "개발자 머그컵 팝니다",
+      itemPrice: "5000",
+      itemDetail: "뉴 커피.. 일이 끝나지 않았다면.. 커피가 비어있다면 설탕과 크림으로 커피를 리필한다.. 커피를 리필한 다음 홀짝이며 작업을 실행한다..",
+      city: "대구시",
+      comment: [
+        {
+          nickname: "봄봄",
+          comment: "구경 잘하고 갑니다~"
+        }
+      ]
+    },
+    {
+      username: "spring123@gmail.com",
+      nickname: "봄봄",
+      images: "https://images.unsplash.com/photo-1515165737480-16f5a6cff26d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1156&q=80",
+      itemName: "개발자 머그컵 팝니다",
+      itemPrice: "5000",
+      itemDetail: "뉴 커피.. 일이 끝나지 않았다면.. 커피가 비어있다면 설탕과 크림으로 커피를 리필한다.. 커피를 리필한 다음 홀짝이며 작업을 실행한다..",
+      city: "대구시",
+      comment: [
+        {
+          nickname: "봄봄",
+          comment: "구경 잘하고 갑니다~"
+        }
+      ]
+    },
+    
     ],
-  
+    item: {
+      username: "spring123@gmail.com",
+      nickname: "봄봄",
+      images: "https://images.unsplash.com/photo-1515165737480-16f5a6cff26d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1156&q=80",
+      itemName: "개발자 머그컵 팝니다",
+      itemPrice: "5000",
+      itemDetail: "뉴 커피.. 일이 끝나지 않았다면.. 커피가 비어있다면 설탕과 크림으로 커피를 리필한다.. 커피를 리필한 다음 홀짝이며 작업을 실행한다..",
+      city: "대구시",
+      comment: [
+        {
+          nickname: "봄봄",
+          comment: "구경 잘하고 갑니다~"
+        }
+      ]
+    },
+    
   isLoading: false,
 };
 

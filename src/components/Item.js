@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useResolvedPath } from 'react-router-dom';
 
+// props : item.item => map으로 item.comment
 
 const Item = () => {
     const dispatch = useDispatch();
@@ -45,7 +46,8 @@ const Item = () => {
         <Container>
 
         <ItemName>{item[0].itemName}</ItemName>
-        <Image src={item[0].images} style={{width: "95%", height: "350px"}}/>
+        
+        <Image src={item[0].images} style={{"backgroundColor": "#efefef", width: "95%", height: "350px"}}/>
             <Userinfo>
                 <UserNickName>{item[0].nickname}</UserNickName><Address>{item.city}</Address>
             </Userinfo>
@@ -127,12 +129,16 @@ const Subject = styled.div`
     text-align: left;
     padding: 20px;
     font-size: 14px;
-    margin-left: 16px;
+    // margin-left: 16px;
 `;
 
 const ItemPrice = styled.div`
     font-size: 20px;
     font-weight: bold;
+    &::after{
+        content: "원";
+        font-size: 13px;
+        margin-left: 3px;
 `;
 
 const Input = styled.input`
