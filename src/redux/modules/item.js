@@ -110,7 +110,6 @@ const initialState = {
 //   isLoading: false,
 // };
 
-// const mockAPl = 'https://run.mocky.io/v3/ce3bcb61-6cb3-471d-bc40-e3243360b529'
 const items_API = 'http://13.209.167.96/'
 const getItemsAPI = () => {
   return function (dispatch, getState, { navigate }) {
