@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-
 import { Button } from "@material-ui/core";
 
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCookie, setCookie } from "../shared/Cookie";
 import { actionCreators } from "../redux/modules/item";
+import { actionCreators as imageActions} from "../redux/modules/image";
 
 const ItemUp = (props) => {
   const navigate = useNavigate();
@@ -50,8 +50,13 @@ const ItemUp = (props) => {
   const handleInputDetail = (e) => {
     setItemDetail(e.target.value);
   };
-
+  
   const onClickItemUp = () => {
+    let image = image.current.files[0]; //이미지 가져왔으니까 참조를 만들어라 !
+        dispatch(imageActions.onClickItemUp(image))
+
+
+    console.log("여기요",itemName,image,itemPrice,itemDetail)
     if (
       itemName === "" ||
       image === "" ||
@@ -59,16 +64,16 @@ const ItemUp = (props) => {
       itemDetail === ""
     ) {
       window.alert("내용을 모두 입력해주세요.");
-    } else {
+    } else { 
       axios({
         method: "POST",
         url: "http://13.209.167.96/item/update",
         data: {
-          itemName: itemName,
-          image: image,
-          itemPrice: itemPrice,
-          itemDetail: itemDetail,
-        },
+          "itemName": itemName,
+          "image": image,
+          "itemPrice": itemPrice,
+          "itemDetail": itemDetail,
+        }, 
       })
         .then((res) => {
           console.log(res);
@@ -112,6 +117,7 @@ const ItemUp = (props) => {
           <input
             id="image"
             type="file"
+            accept="image/*"
             placeholder="사진을 선택해주세요"
             onChange={handleInputImg}
           />
@@ -206,27 +212,5 @@ const Input = styled.input`
   background: #fff;
   box-sizing: border-box;
 `;
-
-// const Image = styled.div`
-
-// `;
-
-// const TextArea =styled.div`
-//     width: 450px;
-//     height: 300px;
-//     display: inline-block;
-
-//     // text-align: center;
-//     border: solid 1px #dadada;
-//     border-radius: 8px;
-// `;
-
-// const content_txt = styled.div`
-//     width: 90%;
-//     resize: none;
-//     border: none;
-//     height: 500px;
-//     outline : none;
-// `;
 
 export default ItemUp;

@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
-import produce from "immer";
+import produce from "immer"
+
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -9,12 +10,14 @@ const UPLOAD_IMG="UPLOAD_IMG";
 const uploading =createAction(UPLOADING, (uploading)=>({uploading}));
 const uploadImg =createAction(UPLOADING, (image_url)=>({image_url}));
 
+
 const initialState={
     image_url:'',
     uploading: false,
 };
-const uploadingFB =(image)=>{
-    return function(dispatch,getState,{history}){
+const onClickItemUp =()=>{
+   
+    return function(dispatch,getState,{navigate}){
         dispatch(uploading(true));
         const storage = getStorage();
         const storageRef = ref(storage, `images/${image.name}`);
@@ -44,7 +47,7 @@ export default handleActions({
 
 const actionCreators={
     uploadImg,
-    uploadingFB,
+    onClickItemUp,
 }
 
 export {actionCreators};

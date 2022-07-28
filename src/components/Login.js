@@ -40,7 +40,7 @@ const Login = (props) => {
           axios({
             method: "POST",
             url: "http://13.209.167.96/user/login",
-            data: {
+            data: { 
               "username": username,
               "pw": pw,
             }          

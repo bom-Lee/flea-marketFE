@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 // 미들웨어를 사용하면 액션 객체가 아닌 함수를 디스패치 할 수 있음
 import user from './modules/user';
 import item from './modules/item';
+import Image  from "./modules/image";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // export const history = createBrowserHistory();
@@ -11,7 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const middlewares = [thunk];
 
 const enhancer = applyMiddleware(...middlewares);
-const rootReducer = combineReducers({ user, item });
+const rootReducer = combineReducers({ user, item, Image });
 // const store = createStore(rootReducer, composeWithDevTools(enhancer));
 
 const Store = createStore(rootReducer, enhancer)
