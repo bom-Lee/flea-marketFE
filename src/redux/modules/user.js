@@ -34,101 +34,34 @@ const getUser = createAction(GETUSER, (user) => ({user}));
 
 
 // initialState
-// const initialState = {
-//     users: [],
-//     is_login: false,
-// };
-
 const initialState = {
-    users: [
-        {
-            username: "spring123@gmail.com",
-            nickname: "봄봄",
-            pw: "bombom123",
-            city: "대구시"
-        },
-        {
-          username: "ondoo@gmail.com",
-            nickname: "온두",
-            pw: "ondoo123",
-            city: "고양시"
-
-        },
-        {
-          username: "1234@naver.com",
-          nickname: "da12",
-          pw: "abc12",
-          city: "영주시"
-          }
-    ]
-}
-
-// 로그인 api // 배열로 값을 준다 => userid?
-const loginAPI = (username, pw) => {
-    return function (dispatch, getState, { navigate }) {
-        const token = getCookie("is_login");
-        axios({
-            method: "POST",
-            url: "http://13.209.167.96/user/login",
-            headers: {
-                "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
-                "Content-Type":"application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
-                'Access-Control-Allow-Origin' : '*',
-                'Authorization' : `Bearer ${token}`,
-
-            },
-            data: {
-                "username": username,
-                "pw": pw,
-            }
-        }).then((res)=>{
-            console.log(res);
-            // const accessToken = res.data.token;
-            //쿠키에 토큰 저장
-    //         setCookie("is_login", `${accessToken}`);
-    //         document.location.href = "/";
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   };
-    // };
-            localStorage.setItem("name", JSON.stringify(`${username}`)); //localStorage의 텍스트형이므로 객체 json.stringfy로 변환
-            sessionStorage.setItem("token", res.data);
-            dispatch(logIn({
-                username:username,
-                pw:pw,
-            }));
-
-
-            navigate("/");
-            window.alert("정상적으로 로그인 되었습니다!")
-        }).catch(error=>{
-            console.log(error);
-            window.alert("로그인 실패!");
-        });
-
-    };
+    users: [],
+    is_login: false,
 };
 
-// 로그아웃
-const logOutApi = () =>{
-    return function (dispatch, getState, { navigate }){
-        localStorage.removeItem("name");
-        sessionStorage.removeItem("token");
-        dispatch(logOut());
-        navigate("/");
-    }
+// const initialState = {
+//     users: [
+//         {
+//             username: "spring123@gmail.com",
+//             nickname: "봄봄",
+//             pw: "bombom123",
+//             city: "대구시"
+//         },
+//         {
+//           username: "ondoo@gmail.com",
+//             nickname: "온두",
+//             pw: "ondoo123",
+//             city: "고양시"
 
-}
-
-// 회원가입 api
-const SignUPApi = (username, nickname, pw, city) => {
-    return function (dispatch, getState, { navigate }){
-        console.log("SignUPApi", username, nickname, pw, city)
-        
-    }
-};
+//         },
+//         {
+//           username: "1234@naver.com",
+//           nickname: "da12",
+//           pw: "abc12",
+//           city: "영주시"
+//           }
+//     ]
+// }
 
 // Reducer
 // export default function reducer(state = initialState, action = {} ) {
@@ -188,9 +121,9 @@ const actionCreators = {
     logIn,
     logOut,
     getUser,
-    loginAPI,
-    logOutApi,
-    SignUPApi,
+    // loginAPI,
+    // logOutApi,
+    // SignUPApi,
 };
 
 export { actionCreators };

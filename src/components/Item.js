@@ -12,7 +12,8 @@ const Item = () => {
     const dispatch = useDispatch();
 
     const item = useSelector((state) => state.item.items);
-    console.log(item[0]);
+    console.log(item);
+    
 
     // const navigate = useNavigate()
     // const params = useParams();

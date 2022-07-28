@@ -1,43 +1,101 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
 import { useNavigate, Link } from "react-router-dom";
-import { username, pw } from "./Signup";
+import { useDispatch } from "react-redux";
 
 import cookie from 'react-cookie'
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
-
-import { formatMs } from "@material-ui/core";
-
+import { actionCreators } from "../redux/modules/user";
 
 const Login = () => {
   const navigate = useNavigate();
-
-  // const [userName, setUsername] = React.useState("");
-  // const [pw, setPw] = React.useState("");
-
-  
-  const user = React.useSelector((state) => state.user.items);
-  console.log(user[0]);
-
-  const [username, onChangeUsername, setUsername] = React.useInput("");
-  const [pw, onChangePw, setPw] = React.useInput("");
-
-  const onReset = React.useCallback(() => {
-    setUsername("");
-    setPw("");
-  }, [setUsername, setPw]);
-
-  const onLogin = () => {
-    if (!username || !pw) {
-      alert("모든 값을 정확하게 입력해주세요");
-      return;
-    }
+  const dispatch = useDispatch();
 
 
-    alert("로그인");
-    onReset();
+  // const [userInfo, setUserInfo] = useState({});
+  const [username, setUsername] = useState("");
+  const [pw, setPw] = useState("");
+
+  const [button, setButton] = useState(true);
+  function changeButton() {
+    username.includes("@") && pw.length >= 6
+      ? setButton(false)
+      : setButton(true);
+  }
+
+  const handleInputId = (e) => {
+    setUsername(e.target.value)
+  }
+
+  const handleInputPw = (e) => {
+    setPw(e.target.value)
+  }
+
+  const onClickLogin = (e) => {
+    const passwordDoubleCheck = (pw, pwcheck) => {
+      if (setUsername == username) {
+        if (pw == pwcheck) {
+          e.stopPropagation();
+          navigate("/");
+        } else {
+          alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+          navigate("/login");
+        }
+        axios({
+          method: "POST",
+          url: "http://13.209.167.96/user/login",
+          headers: {
+            "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
+            "Content-Type": "application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
+            'Access-Control-Allow-Origin': '*',
+          },
+          data: {
+            "username": username,
+            "pw": pw,
+          }
+        }).then((res) => {
+          console.log(res);
+          localStorage.setItem("name", JSON.stringify(`${username}`)); //localStorage의 텍스트형이므로 객체 json.stringfy로 변환
+          sessionStorage.setItem("token", res.data);
+
+          window.alert("정상적으로 로그인 되었습니다!")
+          navigate("/");
+          dispatch(actionCreators.logIn({
+            username: username,
+            pw: pw,
+          }));
+        }).catch(error => {
+          console.log(error);
+          window.alert("로그인 실패!");
+        }
+        )
+      }
+    };
   };
+
+  // React.useEffect(() => {
+  //   axios({
+  //     method: "get",
+  //     url: "http://13.209.167.96/user/login",
+  //     headers: {
+  //       "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
+  //       "Content-Type": "application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
+  //       'Access-Control-Allow-Origin': '*',
+  //     }
+  //       .then(res => console.log(res))
+  //       .catch()
+  //   }, [])
+  // });
+
+  // const loginCookie = () => {
+  //   setCookie("username", username, 3);
+  //   setCookie("pw", pw, 3);
+  //   // ("변수 이름", 변수값, 기간)
+  // }
+
+
 
   return (
     <>
@@ -45,22 +103,35 @@ const Login = () => {
         <H2>로그인</H2>
         <Input
           id="username"
-          // value={username}
-          // onChange={handleChange}
+          type="text"
+          // onChange={(e) => {
+          //   setUsername(e.target.value);
+          // }}
+          onKeyUp={changeButton}
+          value={username}
+          onChange={handleInputId}
           label="이메일"
           placeholder="이메일을 입력해주세요"
           required
         />
         <Input
+          id="pw"
           type="password"
+          // onChange={(e) => {
+          //   setPw(e.target.value);
+          // }}
+          onKeyUp={changeButton}
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
-          id="pw"
-          // value={pw}
-          // onChange={handleChange}
+          value={pw}
+          onChange={handleInputPw}
           required
         />
-        <Button onClick={() => navigate("/")}>로그인</Button>
+        <Button
+          type="button"
+          onClick={onClickLogin}
+        >로그인
+        </Button>
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
         </P>
@@ -111,7 +182,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   font-size: 18px;
   font-weight: 700;
   line-height: 49px;

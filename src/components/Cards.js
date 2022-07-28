@@ -4,17 +4,15 @@ import styled from "styled-components";
 // import { history } from '../redux/configStore'
 
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-
-// const Cards = () => {
-//   const navigate = useNavigate()
+// import { useSelector } from 'react-redux'
 
   // const item = useSelector((state) => state.item.items)
   //   console.log(item)
 
 const Cards = (props) => {
-  const navigate = useNavigate()
-  const { images, itemName, itemPrice, city } = props.item;
+  // const [item, setItem] = React.useState();
+  // const navigate = useNavigate()
+  const { images, itemName, itemPrice, city } = props.item.item;
   console.log(props)
 
   return (

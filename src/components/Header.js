@@ -10,71 +10,80 @@ import { useSelector, useDispatch } from "react-redux";
 
 import cookie from 'react-cookie'
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators } from "../redux/modules/user";
 
 
-// const Header = ({ data }) => {
-//   const navigate = useNavigate()
-//   console.log(data)
-
-const Header = () => {
+const Header = ((props) => {
   const user = useSelector((state) => state.user)
-  console.log("나야나",user);
-
-// const Header = (props) => {
-    // const { nickname } = props.user;
-    // console.log("나야나", props)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-     
-  // 쿠키에 저장된 액세스 토큰이 존재할 때만 서버에 검증 요청
-   if(getCookie("is_login")){
-     dispatch(userActions.loginCheck());
-   }
-   
- }, []);
+  const [is_login, setIsLogin] = React.useState(false);
+  
+    React.useEffect(() => {
 
-    return (
-        <div className="App">
-          <Nav>
-            <Logo onClick={() => {
-              navigate("/")
-            }} style={{color: 'white', fontSize: '24px', cursor: "pointer"}}>FleaMarket</Logo>
-
-            <Text>닉네임자리</Text>
-            {/* {user.nickname} */}
-
-            {/* 로그인 후 상태 */}
-            <Btngruop>
-            <Button onClick={() => {
-                navigate('/itemUp')
-                }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
-                작성하기
-                </Button>
-              <Button onClick={() => {
-                window.alert("로그아웃!")
-                navigate("/login")
-              }} style={{color: 'white'}} variant="outlined" color="inherit">
-                로그아웃</Button>
-
-              {/* 로그인 전 상태 */}
-              {/* <Button onClick={() => {
-                navigate('/login')
-                }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
-                Login</Button>
-              <Button onClick={() => {
-                navigate('/signup')
-              }} style={{color: 'white'}} variant="outlined" color="inherit">
-                회원가입</Button> */}
-            </Btngruop>
-
-          </Nav>
-        </div>
-      );
+    // 쿠키를 가져오기
+    let cookie = getCookie('쿠키 이름 넣기!');
+    // 확인
+    console.log(cookie);
+    // 쿠키가 있으면?
+    if(cookie){
+        setIsLogin(true);
+    }else{
+        setIsLogin(false);
     }
+  });
+
+  if(is_login){
+    return (
+      <div className="App">
+      <Nav>
+        <Logo onClick={() => {
+          navigate("/")
+        }} style={{ color: 'white', fontSize: '24px', cursor: "pointer" }}>FleaMarket</Logo>
+
+        <Text>{`${user.username}`}</Text>
+
+        {/* 로그인 후 상태 */}
+        <Btngruop>
+          <Button onClick={() => {
+            navigate('/itemUp')
+          }} style={{ color: 'white', margin: "0px 8px 0px 0px" }} variant="outlined" color="inherit">
+            작성하기
+          </Button>
+          <Button onClick={() => {
+            window.alert("로그아웃!")
+            navigate("/login")
+          }} style={{ color: 'white' }} variant="outlined" color="inherit">
+            로그아웃</Button>
+        </Btngruop>
+        </Nav>
+        </div>
+    );
+  }
+  return (
+    <div className="App">
+      <Nav>
+      <Logo onClick={() => {
+          navigate("/")
+        }} style={{ color: 'white', fontSize: '24px', cursor: "pointer" }}>FleaMarket</Logo>
+
+          {/* 로그인 전 상태 */}
+          <Btngruop>
+          <Button onClick={() => {
+                  navigate('/login')
+                  }} style={{color: 'white', margin: "0px 8px 0px 0px"}} variant="outlined" color="inherit">
+                  Login</Button>
+                <Button onClick={() => {
+                  navigate('/signup')
+                }} style={{color: 'white'}} variant="outlined" color="inherit">
+                  회원가입</Button>
+        </Btngruop>
+      </Nav>
+    </div>
+  );
+});
 
 const Nav = styled.div`
         background: black;

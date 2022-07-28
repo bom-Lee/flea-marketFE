@@ -14,7 +14,11 @@ import ItemUp from "./components/ItemUp";
 import UserInfo from "./components/Userinfo";
 import Item from "./components/Item";
 
+import { useSelector } from "react-redux";
+
 function App() {
+
+  const is_login = useSelector((state) => state.user.is_login);
   
   return (
     <>
@@ -23,6 +27,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          
           <Route path="/itemup" element={<ItemUp />} />
           <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/Item" element={<Item />} />
