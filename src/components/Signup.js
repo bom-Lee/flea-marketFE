@@ -70,15 +70,16 @@ const Signup = () => {
 
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
-
-
     const passwordDoubleCheck = (pw, pwcheck) => {
       if (pw !== pwcheck) {
         alert("비밀번호가 다릅니다.");
       }
     };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2cc3c8f333a6eacaf5bab6901fe4db884e842566
     if (!username || !nickname || !city || !pw || !pwcheck) {
       e.preventDefault(); // 유효성 검사를 통화했을 경우 link통해 컴포넌트 간 동동
       alert("모든 값을 정확하게 입력해주세요!");

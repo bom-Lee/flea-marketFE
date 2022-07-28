@@ -9,13 +9,13 @@ const SETITEM = "item/SETITEM";
 const ADDITEM = "item/ADDITEM";
  
 // Action Creators
-  export function loadItem(items) {
-  return { type: LOAD, items }
+  export function loadItem(item) {
+  return { type: LOAD, item }
 }
 
 const loading = createAction(LOAD, (is_loading) => ({ is_loading }));
-const setItems = createAction(SETITEM,(data)=>({data}));
-const addItems = createAction(ADDITEM, (data) => ({data}));
+const setItems = createAction(SETITEM,(item)=>({item}));
+const addItems = createAction(ADDITEM, (item) => ({item}));
 
 const initialState = {
   items: [],
