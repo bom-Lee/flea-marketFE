@@ -2,19 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 // import axios from "axios";
 import { Button } from '@material-ui/core';
-import user from '../redux/modules/user'
+// import user from '../redux/modules/user'
 
 // import { Stack } from '@material-ui/core';
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 
-import cookie from 'react-cookie'
-import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
-import { actionCreators } from "../redux/modules/user";
+// import cookie from 'react-cookie'
+import { getCookie } from "../shared/Cookie";
+// import { actionCreators } from "../redux/modules/user";
 
 
 const Header = ((props) => {
   const user = useSelector((state) => state.user)
+  console.log("나야나",user)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Header = ((props) => {
     React.useEffect(() => {
 
     // 쿠키를 가져오기
-    let cookie = getCookie('쿠키 이름 넣기!');
+    let cookie = getCookie("is_login");
     // 확인
     console.log(cookie);
     // 쿠키가 있으면?

@@ -11,6 +11,7 @@ import { actionCreators } from "../redux/modules/user";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   
   // // 포커스를 주기 위한 useRef
   const inutRef = useRef([]); // ref 배열형태로 저장해서 여러 값을 인덱스로 컨트롤 가능
@@ -41,32 +42,7 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     });
   };
-  //
-  // const handleClick = async () => {
-  //   if (!id || !pw) {
-  //     alert("모든 값을 정확하게 입력해주세요");
-  //     //
-  //   } else if (username !== username) {
-  //     alert("이메일체크");
-  //     //
-  //   } else if (pw !== pw) {
-  //     alert("이메일체크");
-  //     //
-  //   } else {
-  //     // api
-  //     const { data } = await axios.post("/signup", {
-  //       id: inputRef.current[0].value,
-  //       pw: inputRef.current[3].value,
-  //     });
-  //     // console.log(date); ///{status: 200, date:{msg: 'success'}}
-  //     if (data.data.msg === "success") {
-  //       alert("회원가입완료");
-  //       navigate("/login");
-  //     } else {
-  //       alert("입력이 올바르지 않아요!");
-  //     }
-  //   }
-  // };
+  
 
   // 클릭이벤트 : 유효성에 맞는 이벤트 이루어지도록
   const handleClick = (e) => {
@@ -199,17 +175,10 @@ const Signup = () => {
           onChange={handleChange}
           ref={(el) => (inutRef.current[4] = el)}
         />
-        {/* <Link to={`/${username}`}> */}
           <Button
             type="button"
             onClick={handleClick}
-            // disabled={
-            //   username.length < 1 && pw.length < 1 && username.length < 1
-            // }
-          >
-            회원가입
-          </Button>
-        {/* </Link> */}
+          >회원가입</Button>
 
         <P>
           회원이신가요? <Link to="/login">로그인</Link>

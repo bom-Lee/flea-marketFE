@@ -9,10 +9,9 @@ import cookie from 'react-cookie'
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 import { actionCreators } from "../redux/modules/user";
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   // const [userInfo, setUserInfo] = useState({});
   const [username, setUsername] = useState("");
@@ -33,69 +32,37 @@ const Login = () => {
     setPw(e.target.value)
   }
 
-  const onClickLogin = (e) => {
-    const passwordDoubleCheck = (pw, pwcheck) => {
-      if (setUsername == username) {
-        if (pw == pwcheck) {
-          e.stopPropagation();
-          navigate("/");
-        } else {
-          alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-          navigate("/login");
-        }
-        axios({
-          method: "POST",
-          url: "http://13.209.167.96/user/login",
-          headers: {
-            "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
-            "Content-Type": "application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
-            'Access-Control-Allow-Origin': '*',
-          },
-          data: {
-            "username": username,
-            "pw": pw,
-          }
-        }).then((res) => {
-          console.log(res);
-          localStorage.setItem("name", JSON.stringify(`${username}`)); //localStorage의 텍스트형이므로 객체 json.stringfy로 변환
-          sessionStorage.setItem("token", res.data);
-
-          window.alert("정상적으로 로그인 되었습니다!")
-          navigate("/");
-          dispatch(actionCreators.logIn({
-            username: username,
-            pw: pw,
-          }));
-        }).catch(error => {
+  const onClickLogin = () => {
+    if (username === "" || pw === "") {
+      window.alert("아이디와 비밀번호를 입력해주세요.");
+      navigate("/login");
+      } else {
+          axios({
+            method: "POST",
+            url: "http://13.209.167.96/user/login",
+            data: {
+              "username": username,
+              "pw": pw,
+            }          
+          }).then((res) => {
+            console.log(res);
+            dispatch(actionCreators.logIn({
+              username: res.data.username,
+              nickname: res.data.pw,
+            })
+            );
+            const accessToken = res.data.token;
+          // 쿠키에 토큰 저장
+          setCookie("is_login", `${accessToken}`);
+          getCookie("is_login");
+          console.log(getCookie("is_login"));
+          document.location.href = "/";
+        }).catch((error) => {
           console.log(error);
           window.alert("로그인 실패!");
-        }
-        )
-      }
+        });
     };
   };
-
-  // React.useEffect(() => {
-  //   axios({
-  //     method: "get",
-  //     url: "http://13.209.167.96/user/login",
-  //     headers: {
-  //       "Accept": "application/json", //클라이언트가 서버한테 요청하는(원하는) 타입
-  //       "Content-Type": "application/json;charset=UTF-8", //현재 서버한테 보내는 데이터 타입
-  //       'Access-Control-Allow-Origin': '*',
-  //     }
-  //       .then(res => console.log(res))
-  //       .catch()
-  //   }, [])
-  // });
-
-  // const loginCookie = () => {
-  //   setCookie("username", username, 3);
-  //   setCookie("pw", pw, 3);
-  //   // ("변수 이름", 변수값, 기간)
-  // }
-
-
 
   return (
     <>
@@ -130,15 +97,15 @@ const Login = () => {
         <Button
           type="button"
           onClick={onClickLogin}
-        >로그인
-        </Button>
+        >로그인</Button>
+
         <P>
           회원이 아니신가요? <Link to="/signup">회원가입</Link>
         </P>
       </Container>
     </>
-  );
-};
+  )
+}
 
 const Container = styled.div`
   width: 400px;
