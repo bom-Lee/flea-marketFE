@@ -1,21 +1,21 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import axios from 'axios'
+import axios from "axios";
 import Item from "../../components/Item";
 
 // Actions
 const LOAD = "item/LOAD";
 const SETITEM = "item/SETITEM";
 const ADDITEM = "item/ADDITEM";
- 
+
 // Action Creators
-  export function loadItem(item) {
-  return { type: LOAD, item }
+export function loadItem(item) {
+  return { type: LOAD, item };
 }
 
 const loading = createAction(LOAD, (is_loading) => ({ is_loading }));
-const setItems = createAction(SETITEM,(item)=>({item}));
-const addItems = createAction(ADDITEM, (item) => ({item}));
+const setItems = createAction(SETITEM, (item) => ({ item }));
+const addItems = createAction(ADDITEM, (item) => ({ item }));
 
 const initialState = {
   items: [],
@@ -89,7 +89,7 @@ const initialState = {
 //         }
 //       ]
 //     },
-    
+
 //     ],
 //     itemone: {
 //       username: "spring123@gmail.com",
@@ -106,11 +106,11 @@ const initialState = {
 //         }
 //       ]
 //     },
-    
+
 //   isLoading: false,
 // };
 
-const items_API = 'http://13.209.167.96/'
+const items_API = "http://13.209.167.96/";
 const getItemsAPI = () => {
   return function (dispatch, getState, { navigate }) {
     dispatch(loading(true));
@@ -125,47 +125,49 @@ const getItemsAPI = () => {
 };
 
 const addItemsAPI = (itemName, image, itemPrice, itemDetail) => {
-  return function (dispatch, getState, { navigate }){
+  return function (dispatch, getState, { navigate }) {
     axios({
       method: "POST",
       url: "http://13.209.167.96/item/update",
       headers: {
-          "Accept": "application/json",
-          "Content-Type":"application/json;charset=UTF-8",
-          'Access-Control-Allow-Origin' : '*'
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
       },
       data: {
         itemName: "",
         image: "",
         itemPrice: "",
-        itemDetail: ""
-      }
-    }).then((res)=>{
-      console.log(res);
-      dispatch(addItems(res.data))
-      navigate("/");
-    }).catch(error=>{
-      console.log(error);
-    });  
+        itemDetail: "",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        dispatch(addItems(res.data));
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
 const getOneItemAPI = (id) => {
-  return function (dispatch, getState, {history}) {
+  return function (dispatch, getState, { history }) {
     dispatch(loading(true));
     axios
-    .get(items_API)
-    .then((resp)=>{
-      const item_list = resp.data;
-      const item_idx = item_list.findIndex(p => p.pid === Number(id));
-      const item = item_list[item_idx];
-      console.log(item);
-      dispatch(setItems([item]));
-      dispatch(loading(false));
-    })
-    .catch((e) => console.error(e));
-  }
-}
+      .get(items_API)
+      .then((resp) => {
+        const item_list = resp.data;
+        const item_idx = item_list.findIndex((p) => p.pid === Number(id));
+        const item = item_list[item_idx];
+        console.log(item);
+        dispatch(setItems([item]));
+        dispatch(loading(false));
+      })
+      .catch((e) => console.error(e));
+  };
+};
 
 // Reducer
 // export default function reducer(State = initialState, action = {} ) {
@@ -178,23 +180,21 @@ const getOneItemAPI = (id) => {
 //   }
 // }
 
-
 export default handleActions(
-  {   
+  {
     [SETITEM]: (state, action) =>
       Item(state, (draft) => {
-      draft.isLoading = action.payload.is_loading;
-      draft.item_list= action.payload.data
-    }),
+        draft.isLoading = action.payload.is_loading;
+        draft.item_list = action.payload.data;
+      }),
     [LOAD]: (state, action) =>
       Item(state, (draft) => {
-      draft.isLoading = action.payload.is_loading;
-    }),
+        draft.isLoading = action.payload.is_loading;
+      }),
     [ADDITEM]: (state, action) =>
       Item(state, (draft) => {
-      draft.item_list.unshift(action.payload.data); 
-    }),
-
+        draft.item_list.unshift(action.payload.data);
+      }),
   },
   initialState
 );
